@@ -1,0 +1,29 @@
+title	Unix `cut' tool
+version	1.0
+diskname	cut
+location	/Net/nova/Users/asmodai/Projects/UnixKit/cut
+suggest	/usr/bin
+description	This package contains the `cut' Unix tool that is lacking from NeXTSTEP and OPENSTEP.
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file for the cut tool.
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	# Be explicit about the path.
+post_install	PATH=/bin:/usr/bin ; export PATH
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/cut" ]
+post_install	then
+post_install	    echo "Marking cut as executable."
+post_install	    chmod 755 $INSTPATH/cut
+post_install	else
+post_install	    echo "The cut binary was not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	echo "Post-installation done."
+post_install	echo
+path	cut

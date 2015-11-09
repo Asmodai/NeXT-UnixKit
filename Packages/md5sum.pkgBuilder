@@ -1,0 +1,34 @@
+title	MD5 checksum tool
+version	1.0
+diskname	md5sum
+location	/Net/nova/Users/asmodai/Projects/UnixKit/md5sum
+suggest	/usr/bin
+description	This is a port of RSA Data Security's `md5sum' utility by Dave Presotto (Bell Labs), with tweaks by Eric Grosse (Bell Labs).
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file for the md5sum tool.
+post_install	
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	
+post_install	# Be explicit about the path.
+post_install	PATH=/bin:/usr/bin ; export PATH
+post_install	
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/md5sum" ]
+post_install	then
+post_install	    echo "Marking md5sum as executable."
+post_install	    chmod 755 $INSTPATH/md5sum
+post_install	else
+post_install	    echo "The md5sum binary was not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	
+post_install	echo "Post-installation done."
+post_install	echo
+path	md5sum
