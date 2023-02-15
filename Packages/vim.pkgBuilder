@@ -1,0 +1,34 @@
+icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/vim.tiff
+title	VIM - Vi, Improved
+version	6.3
+diskname	vim-6.3.NIHS
+location	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/vim63/vim-build
+suggest	/usr/local
+description	This is `Vi Improved', built for NEXTSTEP.  The package includes a Motif version of `gvim' for systems that have an X11 server.  This package requires NEXTSTEP 3.3 or newer.
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file.
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	# Be explicit about the path.
+post_install	PATH=/bin:/usr/bin ; export PATH
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/bin/vim" ]
+post_install	then
+post_install	    echo "Marking vim as executable."
+post_install	    chmod 755 $INSTPATH/bin/vim
+post_install	    chmod 755 $INSTPATH/bin/vimtutor
+post_install	    chmod 755 $INSTPATH/bin/xxd
+post_install	else
+post_install	    echo "The vim binary was not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	echo "Post-installation done."
+post_install	echo
+path	bin
+path	man
+path	share

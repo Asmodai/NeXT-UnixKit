@@ -1,7 +1,8 @@
+icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/unix.tiff
 title	Unix `uname' tool
 version	1.0
 diskname	uname
-location	/Net/nova/Users/asmodai/Projects/UnixKit/uname
+location	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/uname
 suggest	/bin
 description	This package contains the `uname' Unix tool that is lacking from NeXTSTEP and OPENSTEP.
 post_install	#!/bin/sh

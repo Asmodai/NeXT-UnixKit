@@ -9,8 +9,7 @@
 
 NAME = env
 
-PROJECTVERSION = 2.7
-PROJECT_TYPE = Tool
+PROJECTVERSION = 1.1
 LANGUAGE = English
 
 CFILES = env.c
@@ -18,27 +17,18 @@ CFILES = env.c
 OTHERSRCS = Makefile.preamble Makefile Makefile.postamble
 
 
-MAKEFILEDIR = /System/Developer/Makefiles/project
-CODE_GEN_STYLE = DYNAMIC
+MAKEFILEDIR = /NextDeveloper/Makefiles/app
 MAKEFILE = tool.make
-NEXTSTEP_INSTALLDIR = $(HOME)/bin
-WINDOWS_INSTALLDIR = $(HOME)/bin
-PDO_UNIX_INSTALLDIR = $(HOME)/bin
+INSTALLDIR = $(HOME)/bin
+INSTALLFLAGS = -c -s -m 755
+SOURCEMODE = 444
+
 LIBS = 
 DEBUG_LIBS = $(LIBS)
 PROF_LIBS = $(LIBS)
 
 
 
-
-NEXTSTEP_OBJCPLUS_COMPILER = /usr/bin/cc
-WINDOWS_OBJCPLUS_COMPILER = $(DEVDIR)/gcc
-PDO_UNIX_OBJCPLUS_COMPILER = $(NEXTDEV_BIN)/gcc
-NEXTSTEP_JAVA_COMPILER = /usr/bin/javac
-WINDOWS_JAVA_COMPILER = $(JDKBINDIR)/javac.exe
-PDO_UNIX_JAVA_COMPILER = $(NEXTDEV_BIN)/javac
-
-include $(MAKEFILEDIR)/platform.make
 
 -include Makefile.preamble
 

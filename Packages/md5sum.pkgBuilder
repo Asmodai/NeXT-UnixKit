@@ -1,7 +1,8 @@
+icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/unix.tiff
 title	MD5 checksum tool
 version	1.0
 diskname	md5sum
-location	/Net/nova/Users/asmodai/Projects/UnixKit/md5sum
+location	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/md5sum
 suggest	/usr/bin
 description	This is a port of RSA Data Security's `md5sum' utility by Dave Presotto (Bell Labs), with tweaks by Eric Grosse (Bell Labs).
 post_install	#!/bin/sh
