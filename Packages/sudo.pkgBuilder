@@ -1,0 +1,45 @@
+icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/unix.tiff
+title	Unix `sudo' tool
+version	1.6.7p5
+diskname	sudo-1.6.7p5
+location	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/sudo-1.6.7/build
+suggest	/usr/local
+description	This package contains the `sudo' Unix tool, version 1.6.7 patchlevel 5, compiled for NEXTSTEP 3.3.  This package will run only on NEXTSTEP 3.3 and above.
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file for the sudo tool.
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	echo "sudo installed in $INSTPATH"
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/bin/sudo" ]
+post_install	then
+post_install	    echo "Setting setuid on $INSTPATH/bin/sudo"
+post_install	    /etc/chown root $INSTPATH/bin/sudo
+post_install	    /bin/chmod 4111 $INSTPATH/bin/sudo
+post_install	else
+post_install	    echo "The sudo binary was not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	if [ -f "$INSTPATH/sbin/visudo" ]
+post_install	then
+post_install	    echo "Setting permissions on $INSTPATH/sbin/visudo"
+post_install	    /etc/chown root $INSTPATH/sbin/visudo
+post_install	    /bin/chmod 111 $INSTPATH/sbin/visudo
+post_install	else
+post_install	    echo "The sudo binary was not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	echo "Post-installation done."
+post_install	echo
+path	bin/sudo
+path	man/man5/sudoers.5
+path	man/man8/sudo.8
+path	man/man8/visudo.8
+path	sbin/visudo
