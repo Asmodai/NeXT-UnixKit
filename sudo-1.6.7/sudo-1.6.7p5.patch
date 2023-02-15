@@ -1,0 +1,1251 @@
+This patch will upgrade Sudo version 1.6.7 to version 1.6.7 patchlevel
+5.  To apply:
+
+    cd sudo-1.6.7
+    patch -p1 < sudo-1.6.7p5.patch
+
+diff -urN sudo-1.6.7/CHANGES sudo-1.6.7p5/CHANGES
+--- sudo-1.6.7/CHANGES	Sat Mar 22 16:11:43 2003
++++ sudo-1.6.7p5/CHANGES	Tue May  6 11:27:52 2003
+@@ -1601,3 +1601,33 @@
+      lib dir for the skey/opie include file and library respectively.
+ 
+ Sudo 1.6.7 released.
++
++503) Fixed false positives in the overflow detection of expand_prompt().
++
++Sudo 1.6.7p1 released.
++
++504) An unterminated comment broke Kerberos V authentication.
++
++505) The krb5-config script is used to determine Kerberos V CPPFLAGS
++     and LDFLAGS/LIBS if it exists.
++
++506) Backed out changes to mkinstalldirs from autoconf 2.57 that
++     caused problems on Tru64 Unix.
++
++Sudo 1.6.7p2 released.
++
++507) Kerberos V support should work on latest MIT Kerberos V and Heimdal.
++
++Sudo 1.6.7p3 released.
++
++508) Fixed remaining Kerberos V issues with MIT Kerberos V and old Heimdal.
++
++Sudo 1.6.7p4 released.
++
++509) Fixed a typo that caused a compilation error on Heimdal.
++
++510) Darwin (MacOS X) doesn't have a real setreuid() system call.
++
++511) Fixed a problem with large numbers of environment variables.
++
++Sudo 1.6.7p5 released.
+diff -urN sudo-1.6.7/HISTORY sudo-1.6.7p5/HISTORY
+--- sudo-1.6.7/HISTORY	Sun Jan  6 23:01:38 2002
++++ sudo-1.6.7p5/HISTORY	Thu May  8 16:33:31 2003
+@@ -1,10 +1,16 @@
+ A Brief history of sudo(8):
+ 
+-The sudo philosophy originated at SUNY-Buffalo in the early 1980's.
+-In the Summer of 1986, Garth Snyder enhanced sudo and released it
+-to the public.  For the next 5 years, sudo was fed and watered by
+-a handful of folks at CU-Boulder, including Bob Coggeshall, Bob
+-Manchek, and Trent Hein.
++Sudo was first conceived and implemented by Bob Coggeshall and Cliff
++Spencer around 1980 at the Department of Computer Science at
++SUNY/Buffalo.  It ran on a VAX-11/750 running 4.1BSD.  An updated
++version, credited to Phil Betchel, Cliff Spencer, Gretchen Phillips,
++John LoVerso and Don Gworek, was posted to the net.sources newsgroup
++in December of 1985.
++
++In the Summer of 1986, Garth Snyder released and enhanced version
++of sudo. For the next 5 years, sudo was fed and watered by a handful
++of folks at CU-Boulder, including Bob Coggeshall, Bob Manchek, and
++Trent Hein.
+ 
+ In 1991, Dave Hieb and Jeff Nieusma wrote a new version of sudo
+ with an enhanced sudoers format under contract to a consulting firm
+diff -urN sudo-1.6.7/LICENSE sudo-1.6.7p5/LICENSE
+--- sudo-1.6.7/LICENSE	Sat Mar 15 15:23:35 2003
++++ sudo-1.6.7p5/LICENSE	Tue Apr 15 20:25:53 2003
+@@ -33,6 +33,9 @@
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++   Sponsored in part by the Defense Advanced Research Projects
++   Agency (DARPA) and Air Force Research Laboratory, Air Force
++   Materiel Command, USAF, under agreement number F39502-99-1-0512.
+ 
+ Additionally, lsearch.c, fnmatch.c, getcwd.c, snprintf.c, strcasecmp.c
+ and fnmatch.3 bear the following UCB license:
+diff -urN sudo-1.6.7/Makefile.in sudo-1.6.7p5/Makefile.in
+--- sudo-1.6.7/Makefile.in	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/Makefile.in	Tue Apr 15 20:39:10 2003
+@@ -32,6 +32,10 @@
+ # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #
++# Sponsored in part by the Defense Advanced Research Projects
++# Agency (DARPA) and Air Force Research Laboratory, Air Force
++# Materiel Command, USAF, under agreement number F39502-99-1-0512.
++#
+ # @configure_input@
+ #
+ # $Sudo: Makefile.in,v 1.230 2003/03/15 20:31:02 millert Exp $
+@@ -139,7 +143,7 @@
+ 
+ LIBOBJS = @LIBOBJS@ @ALLOCA@
+ 
+-VERSION = 1.6.7
++VERSION = 1.6.7p4
+ 
+ DISTFILES = $(SRCS) $(HDRS) BUGS CHANGES HISTORY INSTALL INSTALL.configure \
+ 	    LICENSE Makefile.in PORTING README RUNSON TODO TROUBLESHOOTING \
+diff -urN sudo-1.6.7/alloc.c sudo-1.6.7p5/alloc.c
+--- sudo-1.6.7/alloc.c	Sat Mar 15 15:31:01 2003
++++ sudo-1.6.7p5/alloc.c	Tue Apr 15 20:39:10 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/afs.c sudo-1.6.7p5/auth/afs.c
+--- sudo-1.6.7/auth/afs.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/afs.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/aix_auth.c sudo-1.6.7p5/auth/aix_auth.c
+--- sudo-1.6.7/auth/aix_auth.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/aix_auth.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/bsdauth.c sudo-1.6.7p5/auth/bsdauth.c
+--- sudo-1.6.7/auth/bsdauth.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/bsdauth.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/dce.c sudo-1.6.7p5/auth/dce.c
+--- sudo-1.6.7/auth/dce.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/dce.c	Tue Apr 15 20:39:15 2003
+@@ -33,6 +33,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ /*
+  *  The code below basically comes from the examples supplied on
+diff -urN sudo-1.6.7/auth/fwtk.c sudo-1.6.7p5/auth/fwtk.c
+--- sudo-1.6.7/auth/fwtk.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/fwtk.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/kerb4.c sudo-1.6.7p5/auth/kerb4.c
+--- sudo-1.6.7/auth/kerb4.c	Wed Mar 19 23:49:58 2003
++++ sudo-1.6.7p5/auth/kerb4.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/kerb5.c sudo-1.6.7p5/auth/kerb5.c
+--- sudo-1.6.7/auth/kerb5.c	Sat Mar 15 21:18:03 2003
++++ sudo-1.6.7p5/auth/kerb5.c	Mon Apr 21 17:19:15 2003
+@@ -33,6 +33,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+@@ -65,9 +69,17 @@
+ #include "sudo_auth.h"
+ 
+ #ifndef lint
+-static const char rcsid[] = "$Sudo: kerb5.c,v 1.13 2003/03/15 20:37:44 millert Exp $";
++static const char rcsid[] = "$Sudo: kerb5.c,v 1.17 2003/04/14 20:49:27 millert Exp $";
+ #endif /* lint */
+ 
++#ifdef HAVE_HEIMDAL
++# define extract_name(c, p)		krb5_principal_get_comp_string(c, p, 0)
++# define krb5_free_data_contents(c, d)	krb5_data_free(d)
++# define ENCTYPE_DES_CBC_MD5		ETYPE_DES_CBC_MD5	/* XXX */
++#else
++# define extract_name(c, p)		(krb5_princ_component(c, p, 1)->data)
++#endif
++
+ static int verify_krb_v5_tgt __P((krb5_context, krb5_ccache, char *));
+ static struct _sudo_krb5_data {
+     krb5_context	sudo_context;
+@@ -266,9 +278,8 @@
+ 	return(-1);
+     }
+ 
+-    /* Extract the name directly. 
+-    strlcpy(phost, krb5_principal_get_realm(sudo_context, princ, 1),
+-	    sizeof(phost));
++    /* Extract the name directly. Yow. */
++    strlcpy(phost, extract_name(sudo_context, princ), sizeof(phost));
+ 
+     /*
+      * Do we have host/<host> keys?
+@@ -276,7 +287,7 @@
+      * and enctype is currently ignored anyhow.)
+      */
+     if ((error = krb5_kt_read_service_key(sudo_context, NULL, princ, 0,
+-					 ETYPE_DES_CBC_MD5, &keyblock))) {
++					 ENCTYPE_DES_CBC_MD5, &keyblock))) {
+ 	/* Keytab or service key does not exist. */
+ 	log_error(NO_EXIT,
+ 		  "%s: host service key not found: %s", auth_name,
+@@ -301,7 +312,7 @@
+ 			    NULL, NULL, NULL);
+ cleanup:
+     if (packet.data)
+-	krb5_data_free(&packet);
++	krb5_free_data_contents(sudo_context, &packet);
+     krb5_free_principal(sudo_context, princ);
+ 
+     if (error)
+diff -urN sudo-1.6.7/auth/pam.c sudo-1.6.7p5/auth/pam.c
+--- sudo-1.6.7/auth/pam.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/pam.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/passwd.c sudo-1.6.7p5/auth/passwd.c
+--- sudo-1.6.7/auth/passwd.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/passwd.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/rfc1938.c sudo-1.6.7p5/auth/rfc1938.c
+--- sudo-1.6.7/auth/rfc1938.c	Sat Mar 15 21:18:34 2003
++++ sudo-1.6.7p5/auth/rfc1938.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/secureware.c sudo-1.6.7p5/auth/secureware.c
+--- sudo-1.6.7/auth/secureware.c	Fri Dec 14 14:52:53 2001
++++ sudo-1.6.7p5/auth/secureware.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/securid.c sudo-1.6.7p5/auth/securid.c
+--- sudo-1.6.7/auth/securid.c	Sat Mar 15 22:03:32 2003
++++ sudo-1.6.7p5/auth/securid.c	Tue Apr 15 20:39:15 2003
+@@ -33,6 +33,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/securid5.c sudo-1.6.7p5/auth/securid5.c
+--- sudo-1.6.7/auth/securid5.c	Mon May 20 16:51:23 2002
++++ sudo-1.6.7p5/auth/securid5.c	Tue Apr 15 20:39:15 2003
+@@ -34,6 +34,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/sia.c sudo-1.6.7p5/auth/sia.c
+--- sudo-1.6.7/auth/sia.c	Fri Dec 14 14:52:53 2001
++++ sudo-1.6.7p5/auth/sia.c	Tue Apr 15 20:39:15 2003
+@@ -32,6 +32,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/auth/sudo_auth.c sudo-1.6.7p5/auth/sudo_auth.c
+--- sudo-1.6.7/auth/sudo_auth.c	Sat Mar 15 15:37:44 2003
++++ sudo-1.6.7p5/auth/sudo_auth.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/check.c sudo-1.6.7p5/check.c
+--- sudo-1.6.7/check.c	Sat Mar 15 15:31:01 2003
++++ sudo-1.6.7p5/check.c	Tue Apr 15 20:39:10 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+@@ -67,7 +71,7 @@
+ #include "sudo.h"
+ 
+ #ifndef lint
+-static const char rcsid[] = "$Sudo: check.c,v 1.210 2003/03/15 20:31:01 millert Exp $";
++static const char rcsid[] = "$Sudo: check.c,v 1.211 2003/04/01 14:58:55 millert Exp $";
+ #endif /* lint */
+ 
+ /* Status codes for timestamp_status() */
+@@ -216,32 +220,35 @@
+ 
+     if (subst) {
+ 	new_prompt = (char *) emalloc(++len);
+-	*new_prompt = '\0';
+-	endp = new_prompt + len - 1;
++	endp = new_prompt + len;
+ 	for (p = old_prompt, np = new_prompt; *p; p++) {
+ 	    if (p[0] =='%') {
+ 		switch (p[1]) {
+ 		    case 'h':
+ 			p++;
+-			if ((n = strlcat(new_prompt, user_shost, len)) >= len)
++			n = strlcpy(np, user_shost, np - endp);
++			if (n >= np - endp)
+ 			    goto oflow;
+ 			np += n;
+ 			continue;
+ 		    case 'H':
+ 			p++;
+-			if ((n = strlcat(new_prompt, user_host, len)) >= len)
++			n = strlcpy(np, user_host, np - endp);
++			if (n >= np - endp)
+ 			    goto oflow;
+ 			np += n;
+ 			continue;
+ 		    case 'u':
+ 			p++;
+-			if ((n = strlcat(new_prompt, user_name, len)) >= len)
++			n = strlcpy(np, user_name, np - endp);
++			if (n >= np - endp)
+ 			    goto oflow;
+ 			np += n;
+ 			continue;
+ 		    case 'U':
+ 			p++;
+-			if ((n = strlcat(new_prompt, *user_runas, len)) >= len)
++			n = strlcpy(np,  *user_runas, np - endp);
++			if (n >= np - endp)
+ 			    goto oflow;
+ 			np += n;
+ 			continue;
+@@ -254,9 +261,9 @@
+ 			break;
+ 		}
+ 	    }
++	    *np++ = *p;
+ 	    if (np >= endp)
+ 		goto oflow;
+-	    *np++ = *p;
+ 	}
+ 	*np = '\0';
+     } else
+diff -urN sudo-1.6.7/compat.h sudo-1.6.7p5/compat.h
+--- sudo-1.6.7/compat.h	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/compat.h	Tue Apr 15 20:40:04 2003
+@@ -31,6 +31,10 @@
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
++ *
+  * $Sudo: compat.h,v 1.65 2003/03/15 20:31:02 millert Exp $
+  */
+ 
+@@ -211,10 +215,10 @@
+ # ifndef HAVE_SIGACTION_T
+ typedef struct sigaction sigaction_t;
+ # endif
+-# ifndef SA_INTERRUPT 
++# ifndef SA_INTERRUPT
+ #  define SA_INTERRUPT	0
+ # endif
+-# ifndef SA_RESTART 
++# ifndef SA_RESTART
+ #  define SA_RESTART	0
+ # endif
+ #endif
+diff -urN sudo-1.6.7/config.h.in sudo-1.6.7p5/config.h.in
+--- sudo-1.6.7/config.h.in	Sat Mar 15 12:55:13 2003
++++ sudo-1.6.7p5/config.h.in	Fri Apr  4 12:19:46 2003
+@@ -118,6 +118,9 @@
+    passwords) */
+ #undef HAVE_GETSPWUID
+ 
++/* Define if your Kerberos is Heimdal. */
++#undef HAVE_HEIMDAL
++
+ /* Define to 1 if you have the `initgroups' function. */
+ #undef HAVE_INITGROUPS
+ 
+diff -urN sudo-1.6.7/configure sudo-1.6.7p5/configure
+--- sudo-1.6.7/configure	Mon Mar 24 11:06:06 2003
++++ sudo-1.6.7p5/configure	Tue May  6 11:22:27 2003
+@@ -307,7 +307,7 @@
+ # include <unistd.h>
+ #endif"
+ 
+-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CFLAGS PROGS CPPFLAGS LDFLAGS SUDO_LDFLAGS SUDO_LIBS NET_LIBS AFS_LIBS OSDEFS AUTH_OBJS MANTYPE MAN_POSTINSTALL SUDOERS_MODE SUDOERS_UID SUDOERS_GID DEV mansectsu mansectform mansrcdir timedir timeout password_timeout sudo_umask passprompt long_otp_prompt lecture logfac goodpri badpri loglen ignore_dot mail_no_user mail_no_host mail_no_perms mailto mailsub badpass_message fqdn runas_default env_editor passwd_tries tty_tickets insults EGREPPROG CC ac_ct_CC EXEEXT OBJEXT CPP UNAMEPROG TRPROG SEDPROG NROFFPROG build build_cpu build_vendor build_os host host_cpu host_vendor host_os EGREP YACC LIBOBJS ALLOCA LTLIBOBJS'
++ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CFLAGS PROGS CPPFLAGS LDFLAGS SUDO_LDFLAGS SUDO_LIBS NET_LIBS AFS_LIBS OSDEFS AUTH_OBJS MANTYPE MAN_POSTINSTALL SUDOERS_MODE SUDOERS_UID SUDOERS_GID DEV mansectsu mansectform mansrcdir timedir timeout password_timeout sudo_umask passprompt long_otp_prompt lecture logfac goodpri badpri loglen ignore_dot mail_no_user mail_no_host mail_no_perms mailto mailsub badpass_message fqdn runas_default env_editor passwd_tries tty_tickets insults EGREPPROG CC ac_ct_CC EXEEXT OBJEXT CPP UNAMEPROG TRPROG SEDPROG NROFFPROG build build_cpu build_vendor build_os host host_cpu host_vendor host_os EGREP YACC LIBOBJS ALLOCA KRB5CONFIG LTLIBOBJS'
+ ac_subst_files=''
+ 
+ # Initialize some variables set by options.
+@@ -6719,6 +6719,12 @@
+ 		    CHECKSHADOW="false"
+ 		fi
+ 		;;
++    *-*-darwin*)
++		SKIP_SETREUID=yes
++		if test "$CHECKSHADOW" = "true"; then
++		    CHECKSHADOW="false"
++		fi
++		;;
+     *-*-nextstep*)
+ 		# lockf() on is broken on the NeXT -- use flock instead
+ 		ac_cv_func_lockf=no
+@@ -13032,12 +13038,106 @@
+     AUTH_OBJS="${AUTH_OBJS} kerb4.o"
+ fi
+ 
+-if test -n "$with_kerb5"; then
++if test "$with_kerb5" = "yes"; then
++    # Extract the first word of "krb5-config", so it can be a program name with args.
++set dummy krb5-config; ac_word=$2
++echo "$as_me:$LINENO: checking for $ac_word" >&5
++echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
++if test "${ac_cv_prog_KRB5CONFIG+set}" = set; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  if test -n "$KRB5CONFIG"; then
++  ac_cv_prog_KRB5CONFIG="$KRB5CONFIG" # Let the user override the test.
++else
++as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
++for as_dir in $PATH
++do
++  IFS=$as_save_IFS
++  test -z "$as_dir" && as_dir=.
++  for ac_exec_ext in '' $ac_executable_extensions; do
++  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
++    ac_cv_prog_KRB5CONFIG="yes"
++    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
++    break 2
++  fi
++done
++done
+ 
++  test -z "$ac_cv_prog_KRB5CONFIG" && ac_cv_prog_KRB5CONFIG=""""
++fi
++fi
++KRB5CONFIG=$ac_cv_prog_KRB5CONFIG
++if test -n "$KRB5CONFIG"; then
++  echo "$as_me:$LINENO: result: $KRB5CONFIG" >&5
++echo "${ECHO_T}$KRB5CONFIG" >&6
++else
++  echo "$as_me:$LINENO: result: no" >&5
++echo "${ECHO_T}no" >&6
++fi
++
++    if test -n "$KRB5CONFIG"; then
++
+ cat >>confdefs.h <<\_ACEOF
+ #define HAVE_KERB5 1
+ _ACEOF
+ 
++	AUTH_OBJS="${AUTH_OBJS} kerb5.o"
++	CPPFLAGS="$CPPFLAGS `krb5-config --cflags`"
++	SUDO_LIBS="$SUDO_LIBS `krb5-config --libs`"
++				echo "$as_me:$LINENO: checking whether we are using Heimdal" >&5
++echo $ECHO_N "checking whether we are using Heimdal... $ECHO_C" >&6
++	cat >conftest.$ac_ext <<_ACEOF
++#line $LINENO "configure"
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++#include <krb5.h>
++int
++main ()
++{
++const char *tmp = heimdal_version;
++  ;
++  return 0;
++}
++_ACEOF
++rm -f conftest.$ac_objext
++if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
++  (eval $ac_compile) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } &&
++         { ac_try='test -s conftest.$ac_objext'
++  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
++  (eval $ac_try) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; }; then
++
++		echo "$as_me:$LINENO: result: yes" >&5
++echo "${ECHO_T}yes" >&6
++
++cat >>confdefs.h <<\_ACEOF
++#define HAVE_HEIMDAL 1
++_ACEOF
++
++
++
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++fi
++rm -f conftest.$ac_objext conftest.$ac_ext
++    fi
++fi
++if test -n "$with_kerb5" -a -z "$KRB5CONFIG"; then
++
++cat >>confdefs.h <<\_ACEOF
++#define HAVE_KERB5 1
++_ACEOF
++
+                 if test "$with_kerb5" = "yes"; then
+ 	found=no
+ 	O_CPPFLAGS="$CPPFLAGS"
+@@ -13124,6 +13224,11 @@
+ 
+ 	    echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
++
++cat >>confdefs.h <<\_ACEOF
++#define HAVE_HEIMDAL 1
++_ACEOF
++
+ 	    SUDO_LIBS="${SUDO_LIBS} -lkrb5 -ldes -lcom_err -lasn1"
+ 	    echo "$as_me:$LINENO: checking for main in -lroken" >&5
+ echo $ECHO_N "checking for main in -lroken... $ECHO_C" >&6
+@@ -14631,6 +14736,7 @@
+ s,@YACC@,$YACC,;t t
+ s,@LIBOBJS@,$LIBOBJS,;t t
+ s,@ALLOCA@,$ALLOCA,;t t
++s,@KRB5CONFIG@,$KRB5CONFIG,;t t
+ s,@LTLIBOBJS@,$LTLIBOBJS,;t t
+ CEOF
+ 
+diff -urN sudo-1.6.7/configure.in sudo-1.6.7p5/configure.in
+--- sudo-1.6.7/configure.in	Mon Mar 24 11:05:59 2003
++++ sudo-1.6.7p5/configure.in	Tue May  6 11:22:36 2003
+@@ -1510,6 +1510,12 @@
+ 		    CHECKSHADOW="false"
+ 		fi
+ 		;;
++    *-*-darwin*)
++		SKIP_SETREUID=yes
++		if test "$CHECKSHADOW" = "true"; then
++		    CHECKSHADOW="false"
++		fi
++		;;
+     *-*-nextstep*)
+ 		# lockf() on is broken on the NeXT -- use flock instead
+ 		ac_cv_func_lockf=no
+@@ -1755,8 +1761,28 @@
+ 
+ dnl
+ dnl Kerberos V
++dnl There is an easy way and a hard way...
+ dnl
+-if test -n "$with_kerb5"; then
++if test "$with_kerb5" = "yes"; then
++    AC_CHECK_PROG(KRB5CONFIG, krb5-config, yes, "")
++    if test -n "$KRB5CONFIG"; then
++	AC_DEFINE(HAVE_KERB5, 1, [Define if you use Kerberos V.])
++	AUTH_OBJS="${AUTH_OBJS} kerb5.o"
++	CPPFLAGS="$CPPFLAGS `krb5-config --cflags`"
++	SUDO_LIBS="$SUDO_LIBS `krb5-config --libs`"
++	dnl
++	dnl Try to determine whether we have Heimdal or MIT Kerberos
++	dnl
++	AC_MSG_CHECKING(whether we are using Heimdal)
++	AC_TRY_COMPILE([#include <krb5.h>], [const char *tmp = heimdal_version;],
++	    [
++		AC_MSG_RESULT(yes)
++		AC_DEFINE(HAVE_HEIMDAL, 1, [Define if your Kerberos is Heimdal.])
++	    ]
++	)
++    fi
++fi
++if test -n "$with_kerb5" -a -z "$KRB5CONFIG"; then
+     AC_DEFINE(HAVE_KERB5, 1, [Define if you use Kerberos V.])
+     dnl
+     dnl Use the specified directory, if any, else search for correct inc dir
+@@ -1785,6 +1811,7 @@
+     AC_TRY_COMPILE([#include <krb5.h>], [const char *tmp = heimdal_version;],
+ 	[
+ 	    AC_MSG_RESULT(yes)
++	    AC_DEFINE(HAVE_HEIMDAL, 1, [Define if your Kerberos is Heimdal.])
+ 	    SUDO_LIBS="${SUDO_LIBS} -lkrb5 -ldes -lcom_err -lasn1"
+ 	    AC_CHECK_LIB(roken, main, [SUDO_LIBS="${SUDO_LIBS} -lroken"])
+ 	], [
+diff -urN sudo-1.6.7/defaults.c sudo-1.6.7p5/defaults.c
+--- sudo-1.6.7/defaults.c	Sun Dec 30 13:40:09 2001
++++ sudo-1.6.7p5/defaults.c	Tue Apr 15 20:39:10 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/defaults.h sudo-1.6.7p5/defaults.h
+--- sudo-1.6.7/defaults.h	Fri Dec 14 14:54:56 2001
++++ sudo-1.6.7p5/defaults.h	Tue Apr 15 20:39:10 2003
+@@ -31,6 +31,10 @@
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
++ *
+  * $Sudo: defaults.h,v 1.23 2001/12/14 19:54:56 millert Exp $
+  */
+ 
+diff -urN sudo-1.6.7/env.c sudo-1.6.7p5/env.c
+--- sudo-1.6.7/env.c	Sat Mar 15 15:31:01 2003
++++ sudo-1.6.7p5/env.c	Tue May  6 00:32:22 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+@@ -113,7 +117,7 @@
+ #endif
+ #ifdef HAVE_KERB4
+     "KRB_CONF*",
+-    "KRBCONFDIR"
++    "KRBCONFDIR",
+     "KRBTKFILE",
+ #endif /* HAVE_KERB4 */
+ #ifdef HAVE_KERB5
+@@ -243,8 +247,8 @@
+     char **nep;
+     size_t varlen;
+ 
+-    /* Make sure there is room for the new entry. */
+-    if (env_len + 1 > env_size) {
++    /* Make sure there is room for the new entry plus a NULL. */
++    if (env_len + 2 > env_size) {
+ 	env_size += 128;
+ 	new_environ = erealloc3(new_environ, env_size, sizeof(char *));
+     }
+diff -urN sudo-1.6.7/fileops.c sudo-1.6.7p5/fileops.c
+--- sudo-1.6.7/fileops.c	Fri Dec 14 14:52:47 2001
++++ sudo-1.6.7p5/fileops.c	Tue Apr 15 20:39:10 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/find_path.c sudo-1.6.7p5/find_path.c
+--- sudo-1.6.7/find_path.c	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/find_path.c	Tue Apr 15 20:39:10 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/getspwuid.c sudo-1.6.7p5/getspwuid.c
+--- sudo-1.6.7/getspwuid.c	Tue Jan 15 18:43:59 2002
++++ sudo-1.6.7p5/getspwuid.c	Tue Apr 15 20:39:14 2003
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1996, 1998-2001 Todd C. Miller <Todd.Miller@courtesan.com>
++ * Copyright (c) 1996, 1998-2002 Todd C. Miller <Todd.Miller@courtesan.com>
+  * All rights reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/goodpath.c sudo-1.6.7p5/goodpath.c
+--- sudo-1.6.7/goodpath.c	Fri Dec 14 14:52:47 2001
++++ sudo-1.6.7p5/goodpath.c	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/interfaces.c sudo-1.6.7p5/interfaces.c
+--- sudo-1.6.7/interfaces.c	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/interfaces.c	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ /*
+diff -urN sudo-1.6.7/interfaces.h sudo-1.6.7p5/interfaces.h
+--- sudo-1.6.7/interfaces.h	Fri Dec 14 14:54:56 2001
++++ sudo-1.6.7p5/interfaces.h	Tue Apr 15 20:39:14 2003
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1996, 1998-2001 Todd C. Miller <Todd.Miller@courtesan.com>
++ * Copyright (c) 1996,1998-2001,2003 Todd C. Miller <Todd.Miller@courtesan.com>
+  * All rights reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  *
+  * $Sudo: interfaces.h,v 1.5 2001/12/14 19:54:56 millert Exp $
+  */
+diff -urN sudo-1.6.7/logging.c sudo-1.6.7p5/logging.c
+--- sudo-1.6.7/logging.c	Mon Mar 24 16:09:27 2003
++++ sudo-1.6.7p5/logging.c	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/mkinstalldirs sudo-1.6.7p5/mkinstalldirs
+--- sudo-1.6.7/mkinstalldirs	Mon Jan 20 14:39:04 2003
++++ sudo-1.6.7p5/mkinstalldirs	Thu Apr  3 10:16:34 2003
+@@ -4,7 +4,7 @@
+ # Created: 1993-05-16
+ # Public domain
+ 
+-# $Sudo: mkinstalldirs,v 1.4 2003/01/20 19:39:04 millert Exp $
++# $Sudo: mkinstalldirs,v 1.5 2003/04/03 15:16:22 millert Exp $
+ 
+ umask 022
+ errstatus=0
+@@ -39,34 +39,6 @@
+       ;;
+   esac
+ done
+-
+-for file
+-do
+-  if test -d "$file"; then
+-    shift
+-  else
+-    break
+-  fi
+-done
+-
+-case $# in
+-  0) exit 0 ;;
+-esac
+-
+-case $dirmode in
+-  '')
+-    if mkdir -p -- . 2>/dev/null; then
+-      echo "mkdir -p -- $*"
+-      exec mkdir -p -- "$@"
+-    fi
+-    ;;
+-  *)
+-    if mkdir -m "$dirmode" -p -- . 2>/dev/null; then
+-      echo "mkdir -m $dirmode -p -- $*"
+-      exec mkdir -m "$dirmode" -p -- "$@"
+-    fi
+-    ;;
+-esac
+ 
+ for file
+ do
+diff -urN sudo-1.6.7/parse.c sudo-1.6.7p5/parse.c
+--- sudo-1.6.7/parse.c	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/parse.c	Tue Apr 15 20:39:14 2003
+@@ -32,6 +32,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/parse.lex sudo-1.6.7p5/parse.lex
+--- sudo-1.6.7/parse.lex	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/parse.lex	Tue Apr 15 20:39:14 2003
+@@ -34,6 +34,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/parse.yacc sudo-1.6.7p5/parse.yacc
+--- sudo-1.6.7/parse.yacc	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/parse.yacc	Tue Apr 15 20:39:14 2003
+@@ -33,6 +33,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ /*
+diff -urN sudo-1.6.7/pathnames.h.in sudo-1.6.7p5/pathnames.h.in
+--- sudo-1.6.7/pathnames.h.in	Fri Dec 14 14:54:56 2001
++++ sudo-1.6.7p5/pathnames.h.in	Tue Apr 15 20:39:14 2003
+@@ -31,6 +31,10 @@
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
++ *
+  * $Sudo: pathnames.h.in,v 1.45 2001/12/14 19:54:56 millert Exp $
+  */
+ 
+diff -urN sudo-1.6.7/set_perms.c sudo-1.6.7p5/set_perms.c
+--- sudo-1.6.7/set_perms.c	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/set_perms.c	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/sigaction.c sudo-1.6.7p5/sigaction.c
+--- sudo-1.6.7/sigaction.c	Sat Dec  8 14:36:48 2001
++++ sudo-1.6.7p5/sigaction.c	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include <signal.h>
+diff -urN sudo-1.6.7/strerror.c sudo-1.6.7p5/strerror.c
+--- sudo-1.6.7/strerror.c	Wed May  8 16:46:47 2002
++++ sudo-1.6.7p5/strerror.c	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include <stdio.h>
+diff -urN sudo-1.6.7/sudo.c sudo-1.6.7p5/sudo.c
+--- sudo-1.6.7/sudo.c	Sat Mar 15 15:31:01 2003
++++ sudo-1.6.7p5/sudo.c	Tue Apr 15 20:39:14 2003
+@@ -31,6 +31,10 @@
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
++ *
+  * For a brief history of sudo, please see the HISTORY file included
+  * with this distribution.
+  */
+@@ -98,7 +102,7 @@
+ #include "version.h"
+ 
+ #ifndef lint
+-static const char rcsid[] = "$Sudo: sudo.c,v 1.333 2003/03/15 20:31:01 millert Exp $";
++static const char rcsid[] = "$Sudo: sudo.c,v 1.334 2003/04/01 15:02:49 millert Exp $";
+ #endif /* lint */
+ 
+ /*
+@@ -613,7 +617,7 @@
+ 	    user_args = (char *) emalloc(size);
+ 	    for (to = user_args, from = NewArgv + 1; *from; from++) {
+ 		n = strlcpy(to, *from, size - (to - user_args));
+-		if (n >= size) {
++		if (n >= size - (to - user_args)) {
+ 		    (void) fprintf(stderr,
+ 			"%s: internal error, init_vars() overflow\n", Argv[0]);
+ 		    exit(1);
+diff -urN sudo-1.6.7/sudo.h sudo-1.6.7p5/sudo.h
+--- sudo-1.6.7/sudo.h	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/sudo.h	Tue Apr 15 20:40:18 2003
+@@ -31,6 +31,10 @@
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
++ *
+  * $Sudo: sudo.h,v 1.192 2003/03/15 20:31:02 millert Exp $
+  */
+ 
+diff -urN sudo-1.6.7/sudo.man.in sudo-1.6.7p5/sudo.man.in
+--- sudo-1.6.7/sudo.man.in	Sat Mar 15 15:33:31 2003
++++ sudo-1.6.7p5/sudo.man.in	Tue Apr 15 20:39:14 2003
+@@ -30,6 +30,10 @@
+ .\" WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ .\" OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ .\" ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++.\"
++.\" Sponsored in part by the Defense Advanced Research Projects
++.\" Agency (DARPA) and Air Force Research Laboratory, Air Force
++.\" Materiel Command, USAF, under agreement number F39502-99-1-0512.
+ .\" 
+ .\" $Sudo: sudo.man.in,v 1.16 2003/03/15 20:33:31 millert Exp $
+ .\" Automatically generated by Pod::Man v1.34, Pod::Parser v1.13
+diff -urN sudo-1.6.7/sudo.pod sudo-1.6.7p5/sudo.pod
+--- sudo-1.6.7/sudo.pod	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/sudo.pod	Tue Apr 15 20:39:14 2003
+@@ -32,6 +32,10 @@
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++Sponsored in part by the Defense Advanced Research Projects
++Agency (DARPA) and Air Force Research Laboratory, Air Force
++Materiel Command, USAF, under agreement number F39502-99-1-0512.
++
+ $Sudo: sudo.pod,v 1.55 2003/03/15 20:31:02 millert Exp $
+ =pod
+ 
+diff -urN sudo-1.6.7/sudoers.man.in sudo-1.6.7p5/sudoers.man.in
+--- sudo-1.6.7/sudoers.man.in	Sat Mar 15 15:33:31 2003
++++ sudo-1.6.7p5/sudoers.man.in	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+ .\" WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ .\" OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ .\" ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++.\"
++.\" Sponsored in part by the Defense Advanced Research Projects
++.\" Agency (DARPA) and Air Force Research Laboratory, Air Force
++.\" Materiel Command, USAF, under agreement number F39502-99-1-0512.
+ .\" 
+ .\" $Sudo: sudoers.man.in,v 1.24 2003/03/15 20:33:31 millert Exp $
+ .\" Automatically generated by Pod::Man v1.34, Pod::Parser v1.13
+diff -urN sudo-1.6.7/sudoers.pod sudo-1.6.7p5/sudoers.pod
+--- sudo-1.6.7/sudoers.pod	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/sudoers.pod	Tue Apr 15 20:40:51 2003
+@@ -32,6 +32,10 @@
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++Sponsored in part by the Defense Advanced Research Projects
++Agency (DARPA) and Air Force Research Laboratory, Air Force
++Materiel Command, USAF, under agreement number F39502-99-1-0512.
++
+ $Sudo: sudoers.pod,v 1.68 2003/03/15 20:31:02 millert Exp $
+ =pod
+ 
+diff -urN sudo-1.6.7/testsudoers.c sudo-1.6.7p5/testsudoers.c
+--- sudo-1.6.7/testsudoers.c	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/testsudoers.c	Tue Apr 15 20:39:15 2003
+@@ -32,6 +32,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+@@ -82,7 +86,7 @@
+ #endif /* HAVE_FNMATCH */
+ 
+ #ifndef lint
+-static const char rcsid[] = "$Sudo: testsudoers.c,v 1.79 2003/03/15 20:31:02 millert Exp $";
++static const char rcsid[] = "$Sudo: testsudoers.c,v 1.80 2003/04/01 15:02:49 millert Exp $";
+ #endif /* lint */
+ 
+ 
+@@ -385,7 +389,7 @@
+ 	user_args = (char *) emalloc(size);
+ 	for (to = user_args, from = NewArgv + 1; *from; from++) {
+ 	    n = strlcpy(to, *from, size - (to - user_args));
+-	    if (n >= size) {
++	    if (n >= size - (to - user_args)) {
+ 		(void) fprintf(stderr,
+ 		    "%s: internal error, init_vars() overflow\n", Argv[0]);
+ 		exit(1);
+diff -urN sudo-1.6.7/tgetpass.c sudo-1.6.7p5/tgetpass.c
+--- sudo-1.6.7/tgetpass.c	Fri Dec 13 13:20:34 2002
++++ sudo-1.6.7p5/tgetpass.c	Tue Apr 15 20:39:15 2003
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 1996, 1998-2001 Todd C. Miller <Todd.Miller@courtesan.com>
++ * Copyright (c) 1996, 1998-2002 Todd C. Miller <Todd.Miller@courtesan.com>
+  * All rights reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/utime.c sudo-1.6.7p5/utime.c
+--- sudo-1.6.7/utime.c	Fri Dec 14 14:52:48 2001
++++ sudo-1.6.7p5/utime.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ #include "config.h"
+diff -urN sudo-1.6.7/version.h sudo-1.6.7p5/version.h
+--- sudo-1.6.7/version.h	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/version.h	Thu May  8 16:45:51 2003
+@@ -31,12 +31,16 @@
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
++ *
+  * $Sudo: version.h,v 1.63 2003/03/15 20:31:02 millert Exp $
+  */
+ 
+ #ifndef _SUDO_VERSION_H
+ #define _SUDO_VERSION_H
+ 
+-static const char version[] = "1.6.7";
++static const char version[] = "1.6.7p5";
+ 
+ #endif /* _SUDO_VERSION_H */
+diff -urN sudo-1.6.7/visudo.c sudo-1.6.7p5/visudo.c
+--- sudo-1.6.7/visudo.c	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/visudo.c	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ *
++ * Sponsored in part by the Defense Advanced Research Projects
++ * Agency (DARPA) and Air Force Research Laboratory, Air Force
++ * Materiel Command, USAF, under agreement number F39502-99-1-0512.
+  */
+ 
+ /*
+diff -urN sudo-1.6.7/visudo.man.in sudo-1.6.7p5/visudo.man.in
+--- sudo-1.6.7/visudo.man.in	Sat Mar 15 15:33:31 2003
++++ sudo-1.6.7p5/visudo.man.in	Tue Apr 15 20:39:15 2003
+@@ -30,6 +30,10 @@
+ .\" WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ .\" OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ .\" ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++.\"
++.\" Sponsored in part by the Defense Advanced Research Projects
++.\" Agency (DARPA) and Air Force Research Laboratory, Air Force
++.\" Materiel Command, USAF, under agreement number F39502-99-1-0512.
+ .\" 
+ .\" $Sudo: visudo.man.in,v 1.14 2003/03/15 20:33:31 millert Exp $
+ .\" Automatically generated by Pod::Man v1.34, Pod::Parser v1.13
+diff -urN sudo-1.6.7/visudo.pod sudo-1.6.7p5/visudo.pod
+--- sudo-1.6.7/visudo.pod	Sat Mar 15 15:31:02 2003
++++ sudo-1.6.7p5/visudo.pod	Tue Apr 15 20:39:15 2003
+@@ -32,6 +32,10 @@
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++Sponsored in part by the Defense Advanced Research Projects
++Agency (DARPA) and Air Force Research Laboratory, Air Force
++Materiel Command, USAF, under agreement number F39502-99-1-0512.
++
+ $Sudo: visudo.pod,v 1.31 2003/03/15 20:31:02 millert Exp $
+ =pod
+ 
