@@ -1,0 +1,30 @@
+icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/unix.tiff
+title	Unix `dirname' tool
+version	1.0
+diskname	dirname
+location	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/dirname
+suggest	/usr/bin
+description	This package contains the `dirname' Unix tool that is lacking from NeXTSTEP and OPENSTEP.
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file for the dirname tool.
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	# Be explicit about the path.
+post_install	PATH=/bin:/usr/bin ; export PATH
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/dirname" ]
+post_install	then
+post_install	    echo "Marking dirname as executable."
+post_install	    chmod 755 $INSTPATH/dirname
+post_install	else
+post_install	    echo "The dirname binary was not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	echo "Post-installation done."
+post_install	echo
+path	dirname

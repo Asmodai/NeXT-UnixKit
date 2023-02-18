@@ -107,7 +107,7 @@ detectOpSysVersion(void)
     
     /* Remove trailing \n, if it exists */
     if (version[len -1] == '\n') {
-      version[len - 1] = '0';
+      version[len - 1] = '\0';
     }
 
     /* This is the slowest part of the whole thing... */

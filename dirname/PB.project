@@ -1,0 +1,15 @@
+DOCEXTENSIONS = ();
+LANGUAGE = English;
+LOCALIZABLE_FILES = {
+};
+PROJECTVERSION = 1.1;
+INSTALLDIR = "$(HOME)/bin";
+PROJECTTYPE = Tool;
+PROJECTNAME = dirname;
+FILESTABLE = {
+    OTHER_SOURCES = (Makefile.preamble, Makefile, Makefile.postamble);
+    OTHER_LINKED = ();
+    C_FILES = (dirname.c);
+};
+GENERATEMAIN = YES;
+DOCICONFILES = ();
