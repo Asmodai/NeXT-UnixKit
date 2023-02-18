@@ -1,0 +1,388 @@
+##### Makemod.in generated automatically by mkmakemod.sh
+##### DO NOT EDIT!
+
+##### ===== DEFINITIONS ===== #####
+
+makefile = Makemod
+dir_top = ..
+subdir = Src
+
+MODOBJS = modobjs.zsh
+MODULES =
+MDDS    = zsh.mdd
+MDHS    = zsh.mdh
+PROTOS  = proto.zsh
+SUBDIRS = Builtins Modules Zle
+
+ENTRYOBJ = $(dir_src)/modentry..o
+NNTRYOBJ =
+ENTRYOPT = -emodentry
+NNTRYOPT =
+
+##### ===== INCLUDING Makemod.in.in ===== #####
+
+#
+# Makemod.in.in
+#
+# Copyright (c) 1995-1997 Richard Coleman
+# All rights reserved.
+#
+# Permission is hereby granted, without written agreement and without
+# license or royalty fees, to use, copy, modify, and distribute this
+# software and to distribute modified versions of this software for any
+# purpose, provided that the above copyright notice and the following
+# two paragraphs appear in all copies of this software.
+#
+# In no event shall Richard Coleman or the Zsh Development Group be liable
+# to any party for direct, indirect, special, incidental, or consequential
+# damages arising out of the use of this software and its documentation,
+# even if Richard Coleman and the Zsh Development Group have been advised of
+# the possibility of such damage.
+#
+# Richard Coleman and the Zsh Development Group specifically disclaim any
+# warranties, including, but not limited to, the implied warranties of
+# merchantability and fitness for a particular purpose.  The software
+# provided hereunder is on an "as is" basis, and Richard Coleman and the
+# Zsh Development Group have no obligation to provide maintenance,
+# support, updates, enhancements, or modifications.
+#
+
+# ========== OVERRIDABLE VARIABLES ==========
+
+# subdir is done by mkmakemod.sh
+# dir_top is done by mkmakemod.sh
+# SUBDIRS is done by mkmakemod.sh
+
+@VERSION_MK@
+
+# source/build directories
+VPATH           = @srcdir@
+sdir            = @srcdir@
+sdir_top        = @top_srcdir@
+INSTALL         = @INSTALL@
+
+@DEFS_MK@
+
+sdir_src      = $(sdir_top)/Src
+dir_src       = $(dir_top)/Src
+
+# ========== COMPILATION RULES ==========
+
+DNCFLAGS =
+
+COMPILE     = $(CC) -c -I. $(CPPFLAGS) $(DEFS) $(CFLAGS) $(D@L@CFLAGS)
+DLCOMPILE   = $(CC) -c -I. $(CPPFLAGS) $(DEFS) -DMODULE $(CFLAGS) $(DLCFLAGS)
+LINK        = $(CC) $(LDFLAGS) $(EXELDFLAGS) $(EXTRA_LDFLAGS) -o $@
+DLLINK      = $(DLLD) $(LDFLAGS) $(LIBLDFLAGS) $(DLLDFLAGS) -o $@
+
+KNR_OBJ=.o
+KNROBJ=._foo_
+
+ANSIOBJ=.o
+ANSI_OBJ=._foo_
+
+.SUFFIXES: .c .$(DL_EXT) ..o .._foo_ .o ._foo_ .syms .pro .epro
+
+.c$(ANSI@U@OBJ):
+	$(COMPILE) -o $@ $<
+	@rm -f $(dir_src)/stamp-modobjs
+
+.c$(KNR@U@OBJ):
+	@ANSI2KNR@ $< > $@.c
+	$(COMPILE) -o $@ $@.c
+	rm -f $@.c
+	@rm -f $(dir_src)/stamp-modobjs
+
+.c.$(ANSI@U@OBJ):
+	$(DLCOMPILE) -o $@ $<
+
+.c.$(KNR@U@OBJ):
+	@ANSI2KNR@ $< > $@.c
+	$(DLCOMPILE) -o $@ $@.c
+	rm -f $@.c
+
+.c.syms:
+	$(AWK) -f $(sdir_src)/makepro.awk $< $(subdir) > $@
+
+.syms.epro:
+	(echo '/* Generated automatically */'; sed -n '/^E/{s/^E//;p;}' < $<) \
+		> $@
+	(echo '/* Generated automatically */'; sed -n '/^L/{s/^L//;p;}' < $<) \
+		> `echo $@ | sed 's/\.epro$$/.pro/'`
+
+PROTODEPS = $(sdir_src)/makepro.awk
+
+# ========== DEPENDENCIES FOR BUILDING ==========
+
+all: modobjs modules
+.PHONY: all
+
+modobjs: $(MODOBJS)
+modules: $(MODULES)
+headers: $(MDHS)
+proto: $(PROTOS)
+.PHONY: modobjs modules headers proto
+
+prep:
+	@case $(sdir_top) in \
+	    /*) top_srcdir=$(sdir_top) ;; \
+	    *) top_srcdir=$(subdir)/$(sdir_top) ;; \
+	esac; \
+	export top_srcdir; \
+	cd $(dir_top) || exit 1; \
+	subdirs='$(SUBDIRS)'; \
+	for subdir in $$subdirs; do \
+	    dir=$(subdir)/$$subdir; \
+	    test -d $$dir || mkdir $$dir; \
+	    $(SHELL) $$top_srcdir/Src/mkmakemod.sh $$dir Makefile || exit 1; \
+	    ( cd $$dir && $(MAKE) $(MAKEDEFS) $@ ) || exit 1; \
+	done
+.PHONY: prep
+
+headers prep: $(dir_src)/modules.stamp
+$(dir_src)/modules.stamp: $(MDDS)
+	echo 'timestamp for *.mdd files' > $@
+.PHONY: headers
+
+FORCE:
+.PHONY: FORCE
+
+# ========== DEPENDENCIES FOR INSTALLING ==========
+
+install: install.bin install.modules
+uninstall: uninstall.bin uninstall.modules
+.PHONY: install uninstall
+
+install.bin: install.bin-here
+uninstall.bin: uninstall.bin-here
+install.modules: install.modules-here
+uninstall.modules: uninstall.modules-here
+.PHONY: install.bin uninstall.bin install.modules uninstall.modules
+
+install.bin-here uninstall.bin-here:
+install.modules-here uninstall.modules-here:
+.PHONY: install.bin-here install.modules-here
+
+# ========== DEPENDENCIES FOR CLEANUP ==========
+
+@CLEAN_MK@
+
+mostlyclean-here:
+	rm -f *.o *.export *.$(DL_EXT)
+.PHONY: mostlyclean-here
+
+clean-here:
+	rm -f *.o.c *.syms *.pro *.epro *.mdh *.mdhi *.mdhs *.mdh.tmp
+.PHONY: clean-here
+
+distclean-here:
+	rm -f $(makefile) $(makefile).in
+.PHONY: distclean-here
+
+# ========== RECURSIVE MAKES ==========
+
+install.bin uninstall.bin install.modules uninstall.modules \
+modobjs modules headers proto:
+	@subdirs='$(SUBDIRS)'; for subdir in $$subdirs; do \
+	  ( cd $$subdir && $(MAKE) $(MAKEDEFS) $@ ) || exit 1; \
+	done
+
+# ========== DEPENDENCIES FOR MAINTENANCE ==========
+
+$(makefile): $(makefile).in $(dir_top)/config.status
+	@case $(sdir_top) in \
+	    /*) top_srcdir=$(sdir_top) ;; \
+	    *) top_srcdir=$(subdir)/$(sdir_top) ;; \
+	esac; \
+	export top_srcdir; \
+	echo 'cd $(dir_top) && $(SHELL)' \
+	    '$$top_srcdir/Src/mkmakemod.sh -m $(subdir) $(makefile)'; \
+	cd $(dir_top) && \
+	    $(SHELL) $$top_srcdir/Src/mkmakemod.sh -m $(subdir) $(makefile)
+
+$(makefile).in: $(sdir_src)/mkmakemod.sh $(sdir_src)/Makemod.in.in $(MDDS) \
+	$(dir_top)/config.modules
+	@case $(sdir_top) in \
+	    /*) top_srcdir=$(sdir_top) ;; \
+	    *) top_srcdir=$(subdir)/$(sdir_top) ;; \
+	esac; \
+	export top_srcdir; \
+	echo 'cd $(dir_top) && $(SHELL)' \
+	    '$$top_srcdir/Src/mkmakemod.sh -i $(subdir) $(makefile)'; \
+	cd $(dir_top) && \
+	    $(SHELL) $$top_srcdir/Src/mkmakemod.sh -i $(subdir) $(makefile)
+
+
+##### ===== DEPENDENCIES GENERATED FROM zsh.mdd ===== #####
+
+MODOBJS_zsh = builtin.o compat.o cond.o exec.o glob.o hashtable.o hist.o init.o input.o jobs.o lex.o linklist.o loop.o math.o mem.o module.o options.o params.o parse.o pattern.o prompt.o signals.o signames.o string.o subst.o text.o utils.o watch.o
+MODDOBJS_zsh = builtin..o compat..o cond..o exec..o glob..o hashtable..o hist..o init..o input..o jobs..o lex..o linklist..o loop..o math..o mem..o module..o options..o params..o parse..o pattern..o prompt..o signals..o signames..o string..o subst..o text..o utils..o watch..o  $(@E@NTRYOBJ)
+SYMS_zsh = builtin.syms compat.syms cond.syms exec.syms glob.syms hashtable.syms hist.syms init.syms input.syms jobs.syms lex.syms linklist.syms loop.syms math.syms mem.syms module.syms options.syms params.syms parse.syms pattern.syms prompt.syms signals.syms signames.syms string.syms subst.syms text.syms utils.syms watch.syms 
+EPRO_zsh = builtin.epro compat.epro cond.epro exec.epro glob.epro hashtable.epro hist.epro init.epro input.epro jobs.epro lex.epro linklist.epro loop.epro math.epro mem.epro module.epro options.epro params.epro parse.epro pattern.epro prompt.epro signals.epro signames.epro string.epro subst.epro text.epro utils.epro watch.epro
+INCS_zsh = $(EPRO_zsh) 
+EXPIMP_zsh =  $(EXPOPT)zsh.export
+NXPIMP_zsh =
+LINKMODS_zsh = 
+NOLINKMODS_zsh = 
+
+proto.zsh: $(EPRO_zsh)
+$(SYMS_zsh): $(PROTODEPS)
+
+zsh.export: $(SYMS_zsh)
+	( echo '#!'; cat $(SYMS_zsh) | sed -n '/^X/{s/^X//;p;}' | sort -u ) > $@
+
+modobjs.zsh: $(MODOBJS_zsh)
+	echo '' $(MODOBJS_zsh) >> $(dir_src)/stamp-modobjs.tmp
+
+zsh.mdhi: zsh.mdhs $(INCS_zsh)
+	@test -f $@ || echo 'do not delete this file' > $@
+
+zsh.mdhs: zsh.mdd
+	@$(MAKE) -f $(makefile) $(MAKEDEFS) zsh.mdh.tmp
+	@if cmp -s zsh.mdh zsh.mdh.tmp; then \
+	    rm -f zsh.mdh.tmp; \
+	    echo "\`zsh.mdh' is up to date."; \
+	else \
+	    mv -f zsh.mdh.tmp zsh.mdh; \
+	    echo "Updated \`zsh.mdh'."; \
+	fi
+	echo 'timestamp for zsh.mdh against zsh.mdd' > $@
+
+zsh.mdh:  ../config.h system.h zsh.h sigcount.h signals.h prototypes.h hashtable.h ztype.h  zsh.mdhi
+	@$(MAKE) -f $(makefile) $(MAKEDEFS) zsh.mdh.tmp
+	@mv -f zsh.mdh.tmp zsh.mdh
+	@echo "Updated \`zsh.mdh'."
+
+zsh.mdh.tmp:
+	@( \
+	    echo '#ifndef have_zshQsmain_module'; \
+	    echo '#define have_zshQsmain_module'; \
+	    echo; \
+	    echo '# ifndef IMPORTING_MODULE_zshQsmain'; \
+	    if test @SHORTBOOTNAMES@ = yes; then \
+		echo '#  ifndef MODULE'; \
+	    fi; \
+	    echo '#   define boot_ boot_zshQsmain'; \
+	    echo '#   define cleanup_ cleanup_zshQsmain'; \
+	    echo '#   define setup_ setup_zshQsmain'; \
+	    echo '#   define finish_ finish_zshQsmain'; \
+	    if test @SHORTBOOTNAMES@ = yes; then \
+		echo '#  endif /* !MODULE */'; \
+	    fi; \
+	    echo '# endif /* !IMPORTING_MODULE_zshQsmain */'; \
+	    echo; \
+	    echo '/* Extra headers for this module */'; \
+	    for hdr in ../config.h system.h zsh.h sigcount.h signals.h prototypes.h hashtable.h ztype.h; do \
+		if test -f $$hdr; then \
+		    echo '# include "'$$hdr'"'; \
+		else \
+		    echo '# include "$(sdir)/'$$hdr'"'; \
+		fi; \
+	    done; \
+	    echo; \
+	    echo '# undef mod_import_variable'; \
+	    echo '# undef mod_import_function'; \
+	    echo '# if defined(IMPORTING_MODULE_zshQsmain) &&  defined(MODULE)'; \
+	    echo '#  define mod_import_variable @MOD_IMPORT_VARIABLE@'; \
+	    echo '#  define mod_import_function @MOD_IMPORT_FUNCTION@'; \
+	    echo '# else'; \
+	    echo '#  define mod_import_function'; \
+	    echo '#  define mod_import_variable'; \
+	    echo '# endif /* IMPORTING_MODULE_zshQsmain && MODULE */'; \
+	    for epro in $(EPRO_zsh); do \
+		echo '# include "'$$epro'"'; \
+	    done; \
+	    echo '# undef mod_import_variable'; \
+	    echo '# define mod_import_variable'; \
+	    echo '# undef mod_import_variable'; \
+	    echo '# define mod_import_variable'; \
+	    echo '# ifndef mod_export'; \
+	    echo '#  define mod_export @MOD_EXPORT@'; \
+	    echo '# endif /* mod_export */'; \
+	    echo; \
+	    echo '#endif /* !have_zshQsmain_module */'; \
+	) > $@
+
+$(MODOBJS_zsh) $(MODDOBJS_zsh): zsh.mdh
+
+@CONFIG_MK@
+
+signames.c: signames1.awk signames2.awk ../config.h @SIGNAL_H@
+	$(AWK) -f $(sdir)/signames1.awk @SIGNAL_H@ >sigtmp.c
+	$(CPP) sigtmp.c >sigtmp.out
+	$(AWK) -f $(sdir)/signames2.awk sigtmp.out > $@
+	rm -f sigtmp.c sigtmp.out
+
+sigcount.h: signames.c
+	grep 'define.*SIGCOUNT' signames.c > $@
+
+init.o: bltinmods.list zshpaths.h zshxmods.h
+
+init.o params.o: version.h
+
+version.h: $(sdir_top)/Config/version.mk
+	echo '#define ZSH_VERSION "'$(VERSION)'"' > $@
+
+zshpaths.h: Makemod $(CONFIG_INCS)
+	@echo '#define MODULE_DIR "'$(MODDIR)'"' > zshpaths.h.tmp
+	@if test x$(sitefndir) != xno; then \
+	  echo '#define SITEFPATH_DIR "'$(sitefndir)'"' >> zshpaths.h.tmp; \
+	fi
+	@if test x$(fndir) != xno; then \
+	  echo '#define FPATH_DIR "'$(fndir)'"' >> zshpaths.h.tmp; \
+	  if test x$(FUNCTIONS_SUBDIRS) != x -a \
+	  x$(FUNCTIONS_SUBDIRS) != xno; then \
+	    fpath_tmp="`grep ' functions=.' \
+	    $(dir_top)/config.modules | sed -e '/^#/d' -e '/ link=no/d' \
+	    -e 's/^.* functions=//'`"; \
+	    fpath_tmp=`for f in $$fpath_tmp; do \
+	      echo $$f | sed -e 's%^Functions/%%' -e 's%/[^/]*$$%%' -e 's%/\*%%'; \
+	    done | sort | uniq`; \
+	    fpath_tmp=`echo $$fpath_tmp | sed 's/ /\", \"/g'`; \
+	    echo "#define FPATH_SUBDIRS { \"$$fpath_tmp\" }" \
+	    >>zshpaths.h.tmp; \
+	  fi; \
+	fi
+	@if cmp -s zshpaths.h zshpaths.h.tmp; then \
+	    rm -f zshpaths.h.tmp; \
+	    echo "\`zshpaths.h' is up to date." ; \
+	else \
+	    mv -f zshpaths.h.tmp zshpaths.h; \
+	    echo "Updated \`zshpaths.h'." ; \
+	fi
+
+bltinmods.list: modules.stamp mkbltnmlst.sh $(dir_top)/config.modules
+	srcdir='$(sdir)' CFMOD='$(dir_top)/config.modules' \
+	  $(SHELL) $(sdir)/mkbltnmlst.sh $@
+
+zshxmods.h: $(dir_top)/config.modules
+	@echo "Creating \`$@'."
+	@( \
+	    for q_mod in `grep ' load=yes' $(dir_top)/config.modules | \
+	      grep ' link=static' | sed -e '/^#/d' -e 's/ .*//' \
+	        -e 's/^name=//' -e 's,Q,Qq,g;s,_,Qu,g;s,/,Qs,g'`; do \
+		test x$q_mod = xzshQsmain && continue; \
+	        echo "#define LINKED_XMOD_$$q_mod 1"; \
+	    done; \
+	    for q_mod in `grep ' load=yes' $(dir_top)/config.modules | \
+	      grep ' link=dynamic' | sed -e '/^#/d' -e 's/ .*//' \
+	        -e 's/^name=//' -e 's,Q,Qq,g;s,_,Qu,g;s,/,Qs,g'`; do \
+		test x$q_mod = x && continue; \
+	        echo "#ifdef DYNAMIC"; \
+		echo "# define UNLINKED_XMOD_$$q_mod 1"; \
+		echo "#endif"; \
+	    done; \
+	) > $@
+
+clean-here: clean.zsh
+clean.zsh:
+	rm -f sigcount.h signames.c bltinmods.list version.h zshpaths.h zshxmods.h
+
+# This is not properly part of this module, but it is built as if it were.
+main.o: main.c zsh.mdh main.epro
+	$(CC) -c -I. $(CPPFLAGS) $(DEFS) $(CFLAGS) -o $@ $(sdir)/main.c
+
+main.syms: $(PROTODEPS)
+proto.zsh: main.epro
+
+##### End of Makemod.in

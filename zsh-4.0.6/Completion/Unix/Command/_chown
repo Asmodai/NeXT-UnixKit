@@ -1,0 +1,38 @@
+#compdef chown chgrp
+
+local suf usr grp req expl line
+
+line=( "${(@)words[2,CURRENT-1]:#-*}" )
+
+if [[ -prefix - ]]; then
+  _message -e options option
+elif [[ $#line -eq 0 ]]; then
+  if [[ $service = chgrp ]] || compset -P '*[:.]'; then
+    if (( EGID && $+commands[groups] )); then  # except for root
+      _wanted groups expl 'group' compadd $(groups) && return 0
+    fi
+    _groups && return 0
+  else
+    if [[ $OSTYPE = (solaris*|hpux*|*bsd*) ]]; then
+      suf=':'
+    else
+      suf='.'
+    fi
+    compset -S '.*' && unset suf
+    _users -S "$suf" -q && return 0
+  fi
+else
+  if [[ $service = chgrp ]]; then
+    grp=${line[1]}
+  else
+    usr=${line[1]%%[.:]*}
+    usr=${${(M)usr:#[0-9]#}:-${userdirs[$usr]:+.$usr.}}
+    grp=${${(M)line[1]%%[.:]*}#?}
+  fi
+  [[ -n $grp ]] && grp="${${(M)grp:#[0-9]#}:-.$grp.}"
+  req=( ${usr:+\^u$usr} ${grp:+\^g$grp} )
+  (( EUID )) && req=( u$EUID$^req )
+  req=( -$^req )
+
+  _wanted files expl file _files -g "*(${(j:,:)req})" && return 0
+fi

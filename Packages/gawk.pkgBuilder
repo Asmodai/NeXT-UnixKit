@@ -1,0 +1,36 @@
+icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/GNU.tiff
+title	GNU AWK
+version	3.0.6
+diskname	gawk-3.0.6.NIHS
+location	/tmp/gawk_build
+suggest	/usr/local
+description	This is `GNU AWK', built for NEXTSTEP 3.3 or newer.
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file.
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	# Be explicit about the path.
+post_install	PATH=/bin:/usr/bin ; export PATH
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/bin/gawk" ]
+post_install	then
+post_install	    echo "Marking awk binaries as executable."
+post_install	    chmod 755 $INSTPATH/bin/gawk
+post_install	    chmod 755 $INSTPATH/bin/igawk
+post_install	else
+post_install	    echo "The gawk binaries are not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	echo "Post-installation done."
+post_install	echo
+path	bin
+path	info
+path	lib
+path	libexec
+path	man
+path	share

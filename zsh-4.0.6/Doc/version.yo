@@ -1,0 +1,4 @@
+STARTDEF()
+def(version)(0)(4.0.6)
+def(date)(0)(August 14, 2002)
+ENDDEF()\
