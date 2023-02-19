@@ -1,0 +1,493 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:586: checking for a BSD compatible install
+configure:655: checking whether build environment is sane
+configure:702: checking for working aclocal
+configure:715: checking for working autoconf
+configure:728: checking for working automake
+configure:741: checking for working autoheader
+configure:754: checking for working makeinfo
+configure:767: checking whether make sets ${MAKE}
+configure:811: checking whether make sets ${MAKE}
+configure:840: checking for gcc
+configure:917: checking whether the C compiler (gcc -O3 -arch m68k -arch i386 -arch hppa -arch sparc  -arch m68k -arch i386 -arch hppa -arch sparc ) works
+configure:931: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:951: checking whether the C compiler (gcc -O3 -arch m68k -arch i386 -arch hppa -arch sparc  -arch m68k -arch i386 -arch hppa -arch sparc ) is a cross-compiler
+configure:956: checking whether we are using GNU C
+configure:965: gcc -E conftest.c
+configure:980: checking whether gcc accepts -g
+configure:1018: checking for a BSD compatible install
+configure:1068: checking how to run the C preprocessor
+configure:1089: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1085: undefined type, found `Syntax'
+configure:1085: illegal external declaration, missing `;' after `Error'
+configure: failed program was:
+#line 1083 "configure"
+#include "confdefs.h"
+#include <assert.h>
+Syntax Error
+configure:1106: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1147: checking for AIX
+configure:1171: checking for POSIXized ISC
+configure:1193: checking for minix/config.h
+configure:1203: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1199: minix/config.h: No such file or directory
+configure: failed program was:
+#line 1198 "configure"
+#include "confdefs.h"
+#include <minix/config.h>
+configure:1241: checking for ANSI C header files
+configure:1254: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1321: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1349: checking for dirent.h that defines DIR
+configure:1362: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+configure:1358: undefined type, found `DIR'
+configure: failed program was:
+#line 1354 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <dirent.h>
+int main() {
+DIR *dirp = 0;
+; return 0; }
+configure:1349: checking for sys/ndir.h that defines DIR
+configure:1362: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+For architecture m68k:
+configure:1356: header file 'sys/ndir.h' not found
+configure:1358: undefined type, found `DIR'
+configure: failed program was:
+#line 1354 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/ndir.h>
+int main() {
+DIR *dirp = 0;
+; return 0; }
+configure:1349: checking for sys/dir.h that defines DIR
+configure:1362: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+configure:1428: checking for opendir in -lx
+configure:1447: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lx   1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lx
+configure: failed program was:
+#line 1436 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char opendir();
+
+int main() {
+opendir()
+; return 0; }
+configure:1470: checking for uid_t in sys/types.h
+configure:1503: checking for pid_t
+configure:1536: checking return type of signal handlers
+configure:1558: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+configure:1581: checking for unistd.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1581: checking for limits.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1581: checking for sys/param.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1581: checking for fcntl.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1581: checking for string.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1581: checking for memory.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1581: checking for sys/timeb.h
+configure:1591: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:1619: checking whether gcc and cc understand -c and -o together
+configure:1634: gcc -c conftest.c -o conftest.o 1>&5
+configure:1635: gcc -c conftest.c -o conftest.o 1>&5
+configure:1640: cc -c conftest.c 1>&5
+configure:1642: cc -c conftest.c -o conftest.o 1>&5
+configure:1643: cc -c conftest.c -o conftest.o 1>&5
+configure:1670: checking for working const
+configure:1724: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+configure:1744: checking whether stat file-mode macros are broken
+configure:1808: checking for memmove
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for psignal
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for mktemp
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for pstat_getdynamic
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+ld: for architecture m68k
+ld: Undefined symbols:
+_pstat_getdynamic
+configure: failed program was:
+#line 1813 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char pstat_getdynamic(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char pstat_getdynamic();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_pstat_getdynamic) || defined (__stub___pstat_getdynamic)
+choke me
+#else
+pstat_getdynamic();
+#endif
+
+; return 0; }
+configure:1808: checking for dup2
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for getcwd
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+ld: for architecture m68k
+ld: Undefined symbols:
+_getcwd
+configure: failed program was:
+#line 1813 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char getcwd(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getcwd();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_getcwd) || defined (__stub___getcwd)
+choke me
+#else
+getcwd();
+#endif
+
+; return 0; }
+configure:1808: checking for sigsetmask
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for getgroups
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for setlinebuf
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for seteuid
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for setegid
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for setreuid
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for setregid
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for strerror
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1808: checking for strsignal
+configure:1836: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+ld: for architecture m68k
+ld: Undefined symbols:
+_strsignal
+configure: failed program was:
+#line 1813 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char strsignal(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char strsignal();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_strsignal) || defined (__stub___strsignal)
+choke me
+#else
+strsignal();
+#endif
+
+; return 0; }
+configure:1861: checking for sys_siglist
+configure:1873: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:1896: checking for working alloca.h
+configure:1908: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+For architecture m68k:
+configure:1902: header file 'alloca.h' not found
+configure: failed program was:
+#line 1901 "configure"
+#include "confdefs.h"
+#include <alloca.h>
+int main() {
+char *p = alloca(2 * sizeof(int));
+; return 0; }
+configure:1929: checking for alloca
+configure:1957: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:2124: checking for vfork.h
+configure:2134: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:2130: vfork.h: No such file or directory
+configure: failed program was:
+#line 2129 "configure"
+#include "confdefs.h"
+#include <vfork.h>
+configure:2159: checking for working vfork
+configure:2309: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:2332: checking whether setvbuf arguments are reversed
+configure:2354: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+For architecture m68k:
+configure: In function `main':
+configure:2347: warning: passing arg 2 of `setvbuf' makes pointer from integer without a cast
+configure:2347: warning: passing arg 3 of `setvbuf' makes integer from pointer without a cast
+For architecture i386:
+configure: In function `main':
+configure:2347: warning: passing arg 2 of `setvbuf' makes pointer from integer without a cast
+configure:2347: warning: passing arg 3 of `setvbuf' makes integer from pointer without a cast
+For architecture hppa:
+configure: In function `main':
+configure:2347: warning: passing arg 2 of `setvbuf' makes pointer from integer without a cast
+configure:2347: warning: passing arg 3 of `setvbuf' makes integer from pointer without a cast
+For architecture sparc:
+configure: In function `main':
+configure:2347: warning: passing arg 2 of `setvbuf' makes pointer from integer without a cast
+configure:2347: warning: passing arg 3 of `setvbuf' makes integer from pointer without a cast
+configure: failed program was:
+#line 2340 "configure"
+#include "confdefs.h"
+#include <stdio.h>
+/* If setvbuf has the reversed format, exit 0. */
+main () {
+  /* This call has the arguments reversed.
+     A reversed system may check and see that the address of main
+     is not _IOLBF, _IONBF, or _IOFBF, and return nonzero.  */
+  if (setvbuf(stdout, _IOLBF, (char *) main, BUFSIZ) != 0)
+    exit(1);
+  putc('\r', stdout);
+  exit(0);			/* Non-reversed systems segv here.  */
+}
+configure:2383: checking for elf_begin in -lelf
+configure:2402: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lelf   1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lelf
+configure: failed program was:
+#line 2391 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char elf_begin();
+
+int main() {
+elf_begin()
+; return 0; }
+configure:2423: checking for kvm_open in -lkvm
+configure:2442: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lkvm   1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lkvm
+configure: failed program was:
+#line 2431 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char kvm_open();
+
+int main() {
+kvm_open()
+; return 0; }
+configure:2464: checking for getloadavg in -lutil
+configure:2483: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lutil   1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lutil
+configure: failed program was:
+#line 2472 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getloadavg();
+
+int main() {
+getloadavg()
+; return 0; }
+configure:2509: checking for getloadavg in -lgetloadavg
+configure:2528: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lgetloadavg  -L/usr/local/lib  1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lgetloadavg
+configure: failed program was:
+#line 2517 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getloadavg();
+
+int main() {
+getloadavg()
+; return 0; }
+configure:2555: checking for getloadavg
+configure:2583: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -L/usr/local/lib  1>&5
+ld: for architecture m68k
+ld: Undefined symbols:
+_getloadavg
+configure: failed program was:
+#line 2560 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char getloadavg(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getloadavg();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_getloadavg) || defined (__stub___getloadavg)
+choke me
+#else
+getloadavg();
+#endif
+
+; return 0; }
+configure:2621: checking for sys/dg_sys_info.h
+configure:2631: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:2627: sys/dg_sys_info.h: No such file or directory
+configure: failed program was:
+#line 2626 "configure"
+#include "confdefs.h"
+#include <sys/dg_sys_info.h>
+configure:2716: checking for inq_stats/cpustats.h
+configure:2726: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:2722: inq_stats/cpustats.h: No such file or directory
+configure: failed program was:
+#line 2721 "configure"
+#include "confdefs.h"
+#include <inq_stats/cpustats.h>
+configure:2759: checking for sys/cpustats.h
+configure:2769: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:2765: sys/cpustats.h: No such file or directory
+configure: failed program was:
+#line 2764 "configure"
+#include "confdefs.h"
+#include <sys/cpustats.h>
+configure:2800: checking for mach/mach.h
+configure:2810: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:2840: checking for nlist.h
+configure:2850: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:2871: checking for n_un in struct nlist
+configure:2883: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+configure:2910: checking whether getloadavg requires setgid
+configure:2966: checking for kstat_open in -lkstat
+configure:2985: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lkstat  -L/usr/local/lib  1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lkstat
+configure: failed program was:
+#line 2974 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char kstat_open();
+
+int main() {
+kstat_open()
+; return 0; }
+configure:3013: checking for working strcoll
+configure:3031: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -L/usr/local/lib  1>&5
+For architecture m68k:
+configure: In function `main':
+configure:3025: warning: passing arg 2 of `strcoll' makes integer from pointer without a cast
+configure:3025: too few arguments to function `strcoll'
+configure:3026: warning: passing arg 2 of `strcoll' makes integer from pointer without a cast
+configure:3026: too few arguments to function `strcoll'
+configure:3027: warning: passing arg 2 of `strcoll' makes integer from pointer without a cast
+configure:3027: too few arguments to function `strcoll'
+configure: failed program was:
+#line 3021 "configure"
+#include "confdefs.h"
+#include <string.h>
+main ()
+{
+  exit (strcoll ("abc", "def") >= 0 ||
+	strcoll ("ABC", "DEF") >= 0 ||
+	strcoll ("123", "456") >= 0);
+}
+configure:3059: checking for sys/wait.h
+configure:3069: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
+configure:3097: checking for waitpid
+configure:3125: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -L/usr/local/lib  1>&5
+ld: for architecture m68k
+ld: Undefined symbols:
+_waitpid
+configure: failed program was:
+#line 3102 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char waitpid(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char waitpid();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_waitpid) || defined (__stub___waitpid)
+choke me
+#else
+waitpid();
+#endif
+
+; return 0; }
+configure:3097: checking for wait3
+configure:3125: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -L/usr/local/lib  1>&5
+configure:3150: checking for union wait
+configure:3178: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -L/usr/local/lib  1>&5
+configure:3199: checking for sys_siglist declaration in signal.h or unistd.h
+configure:3216: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+For architecture m68k:
+configure: In function `main':
+configure:3212: `sys_siglist' undeclared (first use this function)
+configure:3212: (Each undeclared identifier is reported only once
+configure:3212: for each function it appears in.)
+configure: failed program was:
+#line 3204 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <signal.h>
+/* NetBSD declares sys_siglist in unistd.h.  */
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+int main() {
+char *msg = *(sys_siglist + 1);
+; return 0; }
+configure:3240: checking for getpwnam in -lsun
+configure:3259: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lsun  -L/usr/local/lib  1>&5
+ld: for architecture m68k
+ld: can't locate file for: -lsun
+configure: failed program was:
+#line 3248 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getpwnam();
+
+int main() {
+getpwnam()
+; return 0; }

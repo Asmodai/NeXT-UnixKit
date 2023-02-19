@@ -1,8 +1,8 @@
-icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/unix.tiff
+icon	../../icons/bsd.tiff
 title	Unix `cut' tool
 version	1.0
 diskname	cut
-location	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/cut
+location	src
 suggest	/usr/bin
 description	This package contains the `cut' Unix tool that is lacking from NeXTSTEP and OPENSTEP.
 post_install	#!/bin/sh

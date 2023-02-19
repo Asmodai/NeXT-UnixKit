@@ -1,0 +1,478 @@
+
+getopt.h,154
+#define _GETOPT_H 23,854
+struct optionoption81,2929
+#define	no_argument	97,3278
+#define required_argument	98,3301
+#define optional_argument	99,3329
+
+obstack.h,2573
+#define __OBSTACK_H__108,4803
+#define __PTR_TO_INT(__PTR_TO_INT115,5032
+#define __INT_TO_PTR(__INT_TO_PTR119,5103
+#define __need_ptrdiff_t132,5654
+#define PTR_INT_TYPE 140,5757
+#define PTR_INT_TYPE 142,5794
+struct _obstack_chunk	_obstack_chunk145,5828
+struct obstack	obstack152,6056
+#define obstack_base(obstack_base235,9446
+#define obstack_chunk_size(obstack_chunk_size239,9559
+#define obstack_next_free(obstack_next_free243,9673
+#define obstack_alignment_mask(obstack_alignment_mask247,9823
+#define obstack_init(obstack_init249,9880
+#define obstack_begin(obstack_begin253,10012
+#define obstack_specify_allocation(obstack_specify_allocation257,10156
+#define obstack_specify_allocation_with_arg(obstack_specify_allocation_with_arg261,10337
+#define obstack_chunkfun(obstack_chunkfun265,10541
+#define obstack_freefun(obstack_freefun268,10652
+#define obstack_1grow_fast(obstack_1grow_fast271,10741
+#define obstack_blank_fast(obstack_blank_fast273,10808
+#define __extension__280,11121
+#define obstack_object_size(obstack_object_size288,11353
+#define obstack_room(obstack_room294,11558
+#define obstack_grow(obstack_grow299,11721
+#define obstack_grow0(obstack_grow0312,12140
+#define obstack_1grow(obstack_1grow326,12613
+#define obstack_ptr_grow(obstack_ptr_grow339,13076
+#define obstack_int_grow(obstack_int_grow348,13410
+#define obstack_ptr_grow_fast(obstack_ptr_grow_fast357,13734
+#define obstack_int_grow_fast(obstack_int_grow_fast358,13818
+#define obstack_blank(obstack_blank360,13898
+#define obstack_alloc(obstack_alloc370,14224
+#define obstack_copy(obstack_copy376,14402
+#define obstack_copy0(obstack_copy0382,14591
+#define obstack_finish(obstack_finish390,14880
+#define obstack_free(obstack_free411,15611
+#define obstack_object_size(obstack_object_size421,15960
+#define obstack_room(obstack_room424,16066
+#define obstack_grow(obstack_grow433,16402
+#define obstack_grow0(obstack_grow0441,16715
+#define obstack_1grow(obstack_1grow450,17071
+#define obstack_ptr_grow(obstack_ptr_grow456,17275
+#define obstack_int_grow(obstack_int_grow462,17556
+#define obstack_ptr_grow_fast(obstack_ptr_grow_fast468,17822
+#define obstack_int_grow_fast(obstack_int_grow_fast469,17906
+#define obstack_blank(obstack_blank471,17986
+#define obstack_alloc(obstack_alloc478,18236
+#define obstack_copy(obstack_copy481,18331
+#define obstack_copy0(obstack_copy0484,18438
+#define obstack_finish(obstack_finish487,18547
+#define obstack_free(obstack_free503,19170
+#define obstack_free(obstack_free510,19507
+
+regex.h,2325
+#define __REGEXP_LIBRARY_H__24,938
+typedef unsigned reg_syntax_t;reg_syntax_t41,1543
+#define RE_BACKSLASH_ESCAPE_IN_LISTS 45,1710
+#define RE_BK_PLUS_QM 50,1910
+#define RE_CHAR_CLASSES 56,2239
+#define RE_CONTEXT_INDEP_ANCHORS 70,2973
+#define RE_CONTEXT_INDEP_OPS 78,3399
+#define RE_CONTEXT_INVALID_OPS 82,3599
+#define RE_DOT_NEWLINE 86,3742
+#define RE_DOT_NOT_NULL 90,3878
+#define RE_HAT_LISTS_NOT_NEWLINE 94,4023
+#define RE_INTERVALS 99,4233
+#define RE_LIMITED_OPS 103,4382
+#define RE_NEWLINE_ALT 107,4524
+#define RE_NO_BK_BRACES 112,4714
+#define RE_NO_BK_PARENS 116,4905
+#define RE_NO_BK_REFS 120,5061
+#define RE_NO_BK_VBAR 124,5257
+#define RE_NO_EMPTY_RANGES 130,5551
+#define RE_UNMATCHED_RIGHT_PAREN_ORD 134,5707
+#define RE_SYNTAX_EMACS 146,6248
+#define RE_SYNTAX_AWK	148,6275
+#define RE_SYNTAX_POSIX_AWK 154,6506
+#define RE_SYNTAX_GREP	157,6603
+#define RE_SYNTAX_EGREP	162,6759
+#define RE_SYNTAX_POSIX_EGREP	168,6975
+#define RE_SYNTAX_ED 172,7120
+#define RE_SYNTAX_SED 174,7164
+#define _RE_SYNTAX_POSIX_COMMON	177,7282
+#define RE_SYNTAX_POSIX_BASIC	181,7425
+#define RE_SYNTAX_POSIX_MINIMAL_BASIC	187,7718
+#define RE_SYNTAX_POSIX_EXTENDED	190,7808
+#define RE_SYNTAX_POSIX_MINIMAL_EXTENDED	198,8170
+#define RE_DUP_MAX 211,8682
+#define REG_EXTENDED 218,8911
+#define REG_ICASE 222,9035
+#define REG_NEWLINE 227,9219
+#define REG_NOSUB 231,9397
+#define REG_NOTBOL 241,9763
+#define REG_NOTEOL 244,9837
+  REG_NOERROR 251,9987
+  REG_NOMATCH,252,10022
+  REG_BADPAT,256,10169
+  REG_ECOLLATE,257,10208
+  REG_ECTYPE,258,10249
+  REG_EESCAPE,259,10301
+  REG_ESUBREG,260,10344
+  REG_EBRACK,261,10391
+  REG_EPAREN,262,10437
+  REG_EBRACE,263,10482
+  REG_BADBR,264,10518
+  REG_ERANGE,265,10565
+  REG_ESPACE,266,10606
+  REG_BADRPT,267,10647
+  REG_EEND,270,10739
+  REG_ESIZE,271,10774
+  REG_ERPAREN	272,10836
+} reg_errcode_t;reg_errcode_t273,10904
+struct re_pattern_bufferre_pattern_buffer281,11240
+#define REGS_UNALLOCATED 323,12850
+#define REGS_REALLOCATE 324,12877
+#define REGS_FIXED 325,12903
+typedef struct re_pattern_buffer regex_t;regex_t349,13584
+typedef int regoff_t;regoff_t352,13698
+struct re_registersre_registers357,13854
+#define RE_NREGS 369,14144
+} regmatch_t;regmatch_t380,14518
+#define _RE_ARGS(_RE_ARGS392,14865
+#define _RE_ARGS(_RE_ARGS396,14920
+
+regex.c,8726
+#define _GNU_SOURCE29,1077
+#define bcmp(bcmp65,1819
+#define bcopy(bcopy68,1889
+#define bzero(bzero71,1956
+#define Sword 83,2205
+#define CHAR_SET_SIZE 93,2360
+static char re_syntax_table[95,2387
+init_syntax_once 98,2444
+#define SYNTAX(SYNTAX124,2869
+#define ISASCII(ISASCII146,3701
+#define ISASCII(ISASCII148,3728
+#define ISBLANK(ISBLANK152,3781
+#define ISBLANK(ISBLANK154,3835
+#define ISGRAPH(ISGRAPH157,3904
+#define ISGRAPH(ISGRAPH159,3958
+#define ISPRINT(ISPRINT162,4030
+#define ISDIGIT(ISDIGIT163,4078
+#define ISALNUM(ISALNUM164,4126
+#define ISALPHA(ISALPHA165,4174
+#define ISCNTRL(ISCNTRL166,4222
+#define ISLOWER(ISLOWER167,4270
+#define ISPUNCT(ISPUNCT168,4318
+#define ISSPACE(ISSPACE169,4366
+#define ISUPPER(ISUPPER170,4414
+#define ISXDIGIT(ISXDIGIT171,4462
+#define NULL 174,4526
+#define SIGN_EXTEND_CHAR(SIGN_EXTEND_CHAR183,4828
+#define SIGN_EXTEND_CHAR(SIGN_EXTEND_CHAR186,4936
+#define REGEX_ALLOCATE 201,5559
+#define REGEX_REALLOCATE(REGEX_REALLOCATE202,5589
+#define alloca 211,5819
+#define REGEX_ALLOCATE 224,6130
+#define REGEX_REALLOCATE(REGEX_REALLOCATE227,6208
+#define FIRST_STRING_P(FIRST_STRING_P238,6561
+#define TALLOC(TALLOC242,6716
+#define RETALLOC(RETALLOC243,6771
+#define RETALLOC_IF(RETALLOC_IF244,6850
+#define REGEX_TALLOC(REGEX_TALLOC246,6952
+#define BYTEWIDTH 248,7022
+#define STREQ(STREQ250,7059
+#define MAX(MAX254,7129
+#define MIN(MIN255,7171
+typedef char boolean;boolean257,7214
+#define false 258,7236
+#define true 259,7252
+  no_op 270,7592
+  exactn,273,7677
+  anychar,276,7741
+  charset,284,8149
+  charset_not,288,8275
+  start_memory,297,8741
+  stop_memory,306,9250
+  duplicate,310,9388
+  begline,313,9451
+  endline,316,9506
+  begbuf,320,9640
+  endbuf,323,9705
+  jump,326,9787
+  jump_past_alt,329,9855
+  on_failure_jump,333,9979
+  on_failure_keep_string_jump,337,10126
+  pop_failure_jump,341,10270
+  maybe_pop_jump,350,10759
+  dummy_failure_jump,357,11118
+  push_dummy_failure,361,11228
+  succeed_n,365,11396
+  jump_n,369,11538
+  set_number_at,374,11714
+  wordchar,376,11732
+  notwordchar,377,11791
+  wordbeg,379,11863
+  wordend,380,11912
+  wordbound,382,11956
+  notwordbound	383,12008
+  ,before_dot,386,12080
+  at_dot,387,12128
+  after_dot,388,12167
+  syntaxspec,392,12344
+  notsyntaxspec395,12425
+} re_opcode_t;re_opcode_t397,12460
+#define STORE_NUMBER(STORE_NUMBER403,12598
+#define STORE_NUMBER_AND_INCR(STORE_NUMBER_AND_INCR413,12921
+#define EXTRACT_NUMBER(EXTRACT_NUMBER422,13178
+extract_number 430,13393
+#define EXTRACT_NUMBER(EXTRACT_NUMBER441,13638
+#define EXTRACT_NUMBER_AND_INCR(EXTRACT_NUMBER_AND_INCR449,13859
+extract_number_and_incr 457,14048
+#define EXTRACT_NUMBER_AND_INCR(EXTRACT_NUMBER_AND_INCR467,14260
+static int debug 487,14921
+#define DEBUG_STATEMENT(DEBUG_STATEMENT489,14944
+#define DEBUG_PRINT1(DEBUG_PRINT1490,14973
+#define DEBUG_PRINT2(DEBUG_PRINT2491,15019
+#define DEBUG_PRINT3(DEBUG_PRINT3492,15075
+#define DEBUG_PRINT4(DEBUG_PRINT4493,15139
+#define DEBUG_PRINT_COMPILED_PATTERN(DEBUG_PRINT_COMPILED_PATTERN494,15211
+#define DEBUG_PRINT_DOUBLE_STRING(DEBUG_PRINT_DOUBLE_STRING496,15314
+print_fastmap 505,15512
+print_partial_compiled_pattern 537,16147
+print_compiled_pattern 768,20802
+print_double_string 795,21615
+#define assert(assert824,22221
+#define DEBUG_STATEMENT(DEBUG_STATEMENT826,22240
+#define DEBUG_PRINT1(DEBUG_PRINT1827,22267
+#define DEBUG_PRINT2(DEBUG_PRINT2828,22291
+#define DEBUG_PRINT3(DEBUG_PRINT3829,22320
+#define DEBUG_PRINT4(DEBUG_PRINT4830,22353
+#define DEBUG_PRINT_COMPILED_PATTERN(DEBUG_PRINT_COMPILED_PATTERN831,22390
+#define DEBUG_PRINT_DOUBLE_STRING(DEBUG_PRINT_DOUBLE_STRING832,22436
+reg_syntax_t re_syntax_options 839,22726
+re_set_syntax 850,23091
+static const char *re_error_msg[862,23373
+#define MATCH_MAY_ALLOCATE902,25235
+#define INIT_FAILURE_ALLOC 920,25886
+int re_max_failures 927,26165
+typedef unsigned char *fail_stack_elt_t;fail_stack_elt_t929,26194
+} fail_stack_type;fail_stack_type936,26354
+#define FAIL_STACK_EMPTY(FAIL_STACK_EMPTY938,26374
+#define FAIL_STACK_PTR_EMPTY(FAIL_STACK_PTR_EMPTY939,26429
+#define FAIL_STACK_FULL(FAIL_STACK_FULL940,26489
+#define FAIL_STACK_TOP(FAIL_STACK_TOP941,26558
+#define INIT_FAIL_STACK(INIT_FAIL_STACK947,26723
+#define INIT_FAIL_STACK(INIT_FAIL_STACK959,27082
+#define DOUBLE_FAIL_STACK(DOUBLE_FAIL_STACK973,27446
+#define PUSH_PATTERN_OP(PUSH_PATTERN_OP991,28056
+#define PUSH_FAILURE_ITEM(PUSH_FAILURE_ITEM1001,28468
+#define POP_FAILURE_ITEM(POP_FAILURE_ITEM1005,28641
+#define DEBUG_PUSH 1009,28792
+#define DEBUG_POP(DEBUG_POP1010,28829
+#define DEBUG_PUSH(DEBUG_PUSH1012,28899
+#define DEBUG_POP(DEBUG_POP1013,28924
+#define PUSH_FAILURE_POINT(PUSH_FAILURE_POINT1026,29255
+#define NUM_REG_ITEMS 1102,32604
+#define NUM_NONREG_ITEMS 1106,32693
+#define NUM_NONREG_ITEMS 1108,32760
+#define MAX_FAILURE_ITEMS 1112,32848
+#define NUM_FAILURE_ITEMS	1115,32968
+#define REMAINING_AVAIL_SLOTS 1120,33171
+#define POP_FAILURE_POINT(POP_FAILURE_POINT1135,33742
+#define MATCH_NULL_UNSET_VALUE 1212,36878
+} register_info_type;register_info_type1218,37064
+#define REG_MATCH_NULL_STRING_P(REG_MATCH_NULL_STRING_P1220,37087
+#define IS_ACTIVE(IS_ACTIVE1221,37154
+#define MATCHED_SOMETHING(MATCHED_SOMETHING1222,37197
+#define EVER_MATCHED_SOMETHING(EVER_MATCHED_SOMETHING1223,37256
+#define SET_REGS_MATCHED(SET_REGS_MATCHED1229,37512
+#define REG_UNSET_VALUE 1244,37935
+#define REG_UNSET(REG_UNSET1245,37973
+static fail_stack_type fail_stack;1253,38205
+static const char **     regstart,1255,38241
+static const char **     regstart, **     regend;1255,38241
+static const char ** old_regstart,1256,38291
+static const char ** old_regstart, ** old_regend;1256,38291
+static const char **best_regstart,1257,38341
+static const char **best_regstart, **best_regend;1257,38341
+static register_info_type *reg_info;1258,38391
+static const char **reg_dummy;1259,38428
+static register_info_type *reg_info_dummy;1260,38459
+#define PATFETCH(PATFETCH1276,39055
+#define PATFETCH_RAW(PATFETCH_RAW1284,39306
+#define PATUNFETCH 1290,39485
+#define TRANSLATE(TRANSLATE1297,39789
+#define INIT_BUF_SIZE 1303,39994
+#define GET_BUFFER_SPACE(GET_BUFFER_SPACE1306,40088
+#define BUF_PUSH(BUF_PUSH1311,40281
+#define BUF_PUSH_2(BUF_PUSH_21319,40494
+#define BUF_PUSH_3(BUF_PUSH_31328,40723
+#define STORE_JUMP(STORE_JUMP1339,41086
+#define STORE_JUMP2(STORE_JUMP21343,41203
+#define INSERT_JUMP(INSERT_JUMP1347,41365
+#define INSERT_JUMP2(INSERT_JUMP21351,41522
+#define MAX_BUF_SIZE 1358,41813
+#define EXTEND_BUFFER(EXTEND_BUFFER1365,42120
+#define MAX_REGNUM 1394,43340
+typedef unsigned regnum_t;regnum_t1398,43458
+typedef int pattern_offset_t;pattern_offset_t1405,43674
+} compile_stack_elt_t;compile_stack_elt_t1414,43886
+} compile_stack_type;compile_stack_type1422,44032
+#define INIT_COMPILE_STACK_SIZE 1425,44056
+#define COMPILE_STACK_EMPTY 1427,44092
+#define COMPILE_STACK_FULL 1428,44148
+#define COMPILE_STACK_TOP 1431,44256
+#define SET_LIST_BIT(SET_LIST_BIT1435,44373
+#define GET_UNSIGNED_NUMBER(GET_UNSIGNED_NUMBER1441,44596
+#define CHAR_CLASS_MAX_LENGTH 1457,45016
+#define IS_CHAR_CLASS(IS_CHAR_CLASS1459,45075
+#define FREE_STACK_RETURN(FREE_STACK_RETURN1486,46225
+regex_compile 1490,46328
+store_op1 2546,83850
+store_op2 2559,84083
+insert_op1 2574,84422
+insert_op2 2593,84782
+at_begline_loc_p 2614,85278
+at_endline_loc_p 2633,85854
+group_in_compile_stack 2655,86468
+compile_range 2683,87282
+re_compile_fastmap 2742,89342
+re_set_registers 3032,97165
+re_search 3059,97792
+re_search_2 3092,98905
+#define POINTER_TO_OFFSET(POINTER_TO_OFFSET3222,102601
+#define MATCHING_IN_FIRST_STRING 3229,102815
+#define PREFETCH(PREFETCH3233,102969
+#define AT_STRINGS_BEG(AT_STRINGS_BEG3247,103429
+#define AT_STRINGS_END(AT_STRINGS_END3248,103502
+#define WORDCHAR_P(WORDCHAR_P3255,103807
+#define AT_WORD_BOUNDARY(AT_WORD_BOUNDARY3262,104054
+#define FREE_VAR(FREE_VAR3270,104264
+#define FREE_VARIABLES(FREE_VARIABLES3271,104318
+#define FREE_VARIABLES(FREE_VARIABLES3286,104826
+#define FREE_VARIABLES(FREE_VARIABLES3289,104901
+#define NO_HIGHEST_ACTIVE_REG 3299,105463
+#define NO_LOWEST_ACTIVE_REG 3300,105510
+re_match 3308,105720
+re_match_2 3336,106611
+re_match_2_internal 3353,107071
+group_match_null_string_p 4654,153514
+alt_match_null_string_p 4763,157236
+common_op_match_null_string_p 4800,158067
+bcmp_translate 4888,159981
+re_compile_pattern 4914,160664
+static struct re_pattern_buffer re_comp_buf;4944,161519
+re_comp 4947,161572
+re_exec 4985,162462
+regcomp 5033,164044
+regexec 5109,166436
+regerror 5174,168242
+regfree 5218,169298
+
+getopt.c,560
+#define _NO_PROTO28,1140
+#define const39,1357
+char *optarg 86,3205
+int optind 101,3768
+static char *nextchar;110,4067
+int opterr 115,4181
+int optopt 121,4364
+  REQUIRE_ORDER,154,5789
+  REQUIRE_ORDER, PERMUTE,154,5789
+  REQUIRE_ORDER, PERMUTE, RETURN_IN_ORDER154,5789
+} ordering;155,5831
+static char *posixly_correct;158,5898
+#define	my_index	166,6175
+my_index 175,6325
+static int first_nonopt;208,7259
+static int last_nonopt;209,7284
+exchange 221,7770
+_getopt_initialize 279,9293
+_getopt_internal 369,12778
+getopt 667,20396
+main 686,20778
+
+getopt1.c,105
+#define const32,1097
+#define NULL 58,1888
+getopt_long 62,1915
+getopt_long_only 78,2418
+main 96,2774
+
+error.c,193
+#  define VA_START(VA_START32,1050
+#  define VA_START(VA_START35,1138
+# define va_alist 38,1201
+# define va_dcl 39,1250
+private_strerror 62,1815
+#define strerror 72,2021
+error 83,2351
+
+obstack.c,871
+#define POINTER 39,1575
+#define POINTER 41,1604
+struct fooalign fooalign45,1671
+#define DEFAULT_ALIGNMENT 46,1708
+union fooround fooround51,2016
+#define DEFAULT_ROUNDING 52,2052
+#define COPYING_UNIT 59,2357
+struct obstack *_obstack;65,2495
+#define CALL_CHUNKFUN(CALL_CHUNKFUN73,2870
+#define CALL_FREEFUN(CALL_FREEFUN78,3013
+_obstack_begin 97,3611
+_obstack_begin_1 148,5145
+_obstack_newchunk 207,7004
+_obstack_allocated_p 281,9441
+_obstack_free 309,10300
+obstack_free 343,11291
+POINTER 388,12817
+POINTER 394,12918
+int (obstack_object_size)400,13029
+int (obstack_room)406,13140
+void (obstack_grow)412,13237
+void (obstack_grow0)420,13401
+void (obstack_1grow)428,13567
+void (obstack_blank)435,13702
+void (obstack_1grow_fast)442,13828
+void (obstack_blank_fast)449,13973
+POINTER 456,14109
+POINTER 462,14214
+POINTER 469,14350
+POINTER 477,14524
+
+xmalloc.c,167
+#define VOID 26,912
+#define VOID 28,936
+#define EXIT_FAILURE 42,1107
+int xmalloc_exit_failure 47,1256
+fixup_null_alloc 56,1429
+xmalloc 72,1693
+xrealloc 88,1942
+
+xstrdup.c,17
+xstrdup 35,1063
+
+alloca.c,784
+#define ADDRESS_FUNCTION(ADDRESS_FUNCTION58,1913
+#define ADDRESS_FUNCTION(ADDRESS_FUNCTION60,1976
+typedef void *pointer;pointer64,2034
+typedef char *pointer;pointer66,2063
+#define	NULL	69,2094
+#define malloc 82,2558
+#define	STACK_DIRECTION	95,2957
+#define	STACK_DIR	100,3043
+static int stack_dir;104,3164
+#define	STACK_DIR	105,3214
+find_stack_direction 108,3255
+#define	ALIGN_SIZE	139,4045
+typedef union hdrhdr142,4087
+} header;header150,4293
+static header *last_alloca_header 152,4304
+alloca 162,4744
+#define CRAY_STACK230,6222
+struct stack_control_headerstack_control_header233,6315
+struct stack_segment_linkagestack_segment_linkage248,6936
+struct stk_statstk_stat286,8034
+struct stk_trailerstk_trailer315,9457
+i00afunc 344,10115
+i00afunc 418,12063
+
+strtol.c,166
+#define ULONG_MAX 33,971
+#define	LONG_MAX 37,1051
+#define LONG_MIN 41,1127
+#define NULL 48,1231
+#define	UNSIGNED	53,1289
+#define	strtol	64,1719
+strtol 68,1764

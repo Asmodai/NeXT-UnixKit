@@ -1,4 +1,4 @@
-icon	/Net/nova/Users/asmodai/Projects/NeXT-UnixKit/Packages/GNU.tiff
+icon	../../icons/gnu.tiff
 title	GNU AWK
 version	3.0.6
 diskname	gawk-3.0.6.NIHS

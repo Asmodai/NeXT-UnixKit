@@ -29,9 +29,9 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_DATA = ${INSTALL} -m 644
 
 CC = gcc
-CFLAGS = -g -O2
+CFLAGS = -O3 -arch m68k -arch i386 -arch hppa -arch sparc 
 
-prefix = /tmp/gawk_build
+prefix = /usr/local
 exec_prefix = ${prefix}
 binprefix =
 manprefix =

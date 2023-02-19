@@ -4,9 +4,9 @@ running configure, to aid debugging if configure makes a mistake.
 configure:558: checking for bison
 configure:589: checking whether ln -s works
 configure:612: checking for gcc
-configure:725: checking whether the C compiler (gcc  ) works
-configure:741: gcc -o conftest    conftest.c  1>&5
-configure:767: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:725: checking whether the C compiler (gcc -O3 -arch m68k -arch i386 -arch hppa -arch sparc  -arch m68k -arch i386 -arch hppa -arch sparc ) works
+configure:741: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+configure:767: checking whether the C compiler (gcc -O3 -arch m68k -arch i386 -arch hppa -arch sparc  -arch m68k -arch i386 -arch hppa -arch sparc ) is a cross-compiler
 configure:772: checking whether we are using GNU C
 configure:781: gcc -E conftest.c
 configure:800: checking whether gcc accepts -g
@@ -33,9 +33,10 @@ configure: failed program was:
 #include <minix/config.h>
 configure:1157: checking for special C compiler options needed for large files
 configure:1213: checking for _FILE_OFFSET_BITS value needed for large files
-configure:1230: gcc -c -g -O2  conftest.c 1>&5
+configure:1230: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1221: warning: integer constant out of range
 conftest.c:1221: warning: integer constant out of range
+For architecture m68k:
 configure:1221: warning: integer constant out of range
 configure:1221: warning: decimal constant is so large that it is unsigned
 configure:1221: warning: integer constant out of range
@@ -52,9 +53,10 @@ configure: failed program was:
 int main() {
 
 ; return 0; }
-configure:1249: gcc -c -g -O2  conftest.c 1>&5
+configure:1249: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1240: warning: integer constant out of range
 conftest.c:1240: warning: integer constant out of range
+For architecture m68k:
 configure:1240: warning: integer constant out of range
 configure:1240: warning: decimal constant is so large that it is unsigned
 configure:1240: warning: integer constant out of range
@@ -73,9 +75,10 @@ int main() {
 
 ; return 0; }
 configure:1269: checking for _LARGEFILE_SOURCE value needed for large files
-configure:1286: gcc -c -g -O2  conftest.c 1>&5
+configure:1286: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1277: warning: integer constant out of range
 conftest.c:1277: warning: integer constant out of range
+For architecture m68k:
 configure:1277: warning: integer constant out of range
 configure:1277: warning: decimal constant is so large that it is unsigned
 configure:1277: warning: integer constant out of range
@@ -96,9 +99,10 @@ configure: failed program was:
 int main() {
 return !ftello;
 ; return 0; }
-configure:1305: gcc -c -g -O2  conftest.c 1>&5
+configure:1305: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1296: warning: integer constant out of range
 conftest.c:1296: warning: integer constant out of range
+For architecture m68k:
 configure:1296: warning: integer constant out of range
 configure:1296: warning: decimal constant is so large that it is unsigned
 configure:1296: warning: integer constant out of range
@@ -121,9 +125,10 @@ int main() {
 return !ftello;
 ; return 0; }
 configure:1325: checking for _LARGE_FILES value needed for large files
-configure:1342: gcc -c -g -O2  conftest.c 1>&5
+configure:1342: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1333: warning: integer constant out of range
 conftest.c:1333: warning: integer constant out of range
+For architecture m68k:
 configure:1333: warning: integer constant out of range
 configure:1333: warning: decimal constant is so large that it is unsigned
 configure:1333: warning: integer constant out of range
@@ -140,9 +145,10 @@ configure: failed program was:
 int main() {
 
 ; return 0; }
-configure:1361: gcc -c -g -O2  conftest.c 1>&5
+configure:1361: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1352: warning: integer constant out of range
 conftest.c:1352: warning: integer constant out of range
+For architecture m68k:
 configure:1352: warning: integer constant out of range
 configure:1352: warning: decimal constant is so large that it is unsigned
 configure:1352: warning: integer constant out of range
@@ -161,9 +167,10 @@ int main() {
 
 ; return 0; }
 configure:1381: checking for _XOPEN_SOURCE value needed for large files
-configure:1398: gcc -c -g -O2  conftest.c 1>&5
+configure:1398: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1389: warning: integer constant out of range
 conftest.c:1389: warning: integer constant out of range
+For architecture m68k:
 configure:1389: warning: integer constant out of range
 configure:1389: warning: decimal constant is so large that it is unsigned
 configure:1389: warning: integer constant out of range
@@ -184,9 +191,10 @@ configure: failed program was:
 int main() {
 return !ftello;
 ; return 0; }
-configure:1417: gcc -c -g -O2  conftest.c 1>&5
+configure:1417: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 conftest.c:1408: warning: integer constant out of range
 conftest.c:1408: warning: integer constant out of range
+For architecture m68k:
 configure:1408: warning: integer constant out of range
 configure:1408: warning: decimal constant is so large that it is unsigned
 configure:1408: warning: integer constant out of range
@@ -211,9 +219,10 @@ return !ftello;
 configure:1440: checking for AIX compilation hacks
 configure:1463: checking for ANSI C header files
 configure:1476: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
-configure:1543: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1543: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
 configure:1567: checking for sys/wait.h that is POSIX.1 compatible
-configure:1588: gcc -c -g -O2  conftest.c 1>&5
+configure:1588: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
+For architecture m68k:
 configure: In function `main':
 configure:1583: warning: passing arg 1 of `wait' from incompatible pointer type
 configure:1584: request for member `w_S' in something not a structure or union
@@ -257,11 +266,11 @@ configure:1654: checking for memory.h
 configure:1664: gcc -E -traditional-cpp  conftest.c >/dev/null 2>conftest.out
 configure:1734: checking for pid_t
 configure:1767: checking return type of signal handlers
-configure:1789: gcc -c -g -O2  conftest.c 1>&5
+configure:1789: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 configure:1808: checking for size_t
 configure:1841: checking for uid_t in sys/types.h
 configure:1875: checking type of array argument to getgroups
-configure:1908: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1908: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
 configure: failed program was:
 #line 1883 "configure"
 #include "confdefs.h"
@@ -288,7 +297,8 @@ main()
 }
 
 configure:1973: checking for working alloca.h
-configure:1985: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1985: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
+For architecture m68k:
 configure:1979: header file 'alloca.h' not found
 configure: failed program was:
 #line 1978 "configure"
@@ -298,13 +308,14 @@ int main() {
 char *p = alloca(2 * sizeof(int));
 ; return 0; }
 configure:2006: checking for alloca
-configure:2039: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2039: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
 configure:2210: checking for vprintf
-configure:2238: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:2238: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c  1>&5
 configure:2316: checking for fmod in -lm
-configure:2335: gcc -o conftest -g -O2   conftest.c -lm   1>&5
+configure:2335: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm   1>&5
 configure:2366: checking for madvise
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
+ld: for architecture m68k
 ld: Undefined symbols:
 _madvise
 configure: failed program was:
@@ -331,36 +342,51 @@ madvise();
 
 ; return 0; }
 configure:2366: checking for memset
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for memcpy
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
+For architecture m68k:
+configure:2378: warning: conflicting types for built-in function `memcpy'
+For architecture i386:
+configure:2378: warning: conflicting types for built-in function `memcpy'
+For architecture hppa:
+configure:2378: warning: conflicting types for built-in function `memcpy'
+For architecture sparc:
 configure:2378: warning: conflicting types for built-in function `memcpy'
 configure:2366: checking for memcmp
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
+For architecture m68k:
+configure:2378: warning: conflicting types for built-in function `memcmp'
+For architecture i386:
+configure:2378: warning: conflicting types for built-in function `memcmp'
+For architecture hppa:
+configure:2378: warning: conflicting types for built-in function `memcmp'
+For architecture sparc:
 configure:2378: warning: conflicting types for built-in function `memcmp'
 configure:2366: checking for fmod
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for setlocale
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for strchr
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for strerror
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for strftime
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for strncasecmp
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for strtod
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for system
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2366: checking for tzset
-configure:2394: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2394: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2423: checking for unistd.h
 configure:2462: checking for getpagesize
-configure:2490: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2490: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure:2515: checking for working mmap
-configure:2663: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2663: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
+For architecture m68k:
 configure: In function `main':
 configure:2635: `MAP_FIXED' undeclared (first use this function)
 configure:2635: (Each undeclared identifier is reported only once
@@ -507,7 +533,7 @@ main()
 }
 
 configure:2798: checking whether getpgrp takes no argument
-configure:2861: gcc -o conftest -g -O2   conftest.c -lm  1>&5
+configure:2861: gcc -o conftest -O3 -arch m68k -arch i386 -arch hppa -arch sparc   -arch m68k -arch i386 -arch hppa -arch sparc  conftest.c -lm  1>&5
 configure: failed program was:
 #line 2806 "configure"
 #include "confdefs.h"
@@ -564,14 +590,14 @@ main()
 }
 
 configure:2977: checking for st_blksize in struct stat
-configure:2990: gcc -c -g -O2  conftest.c 1>&5
+configure:2990: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 configure:3011: checking whether time.h and sys/time.h may both be included
-configure:3025: gcc -c -g -O2  conftest.c 1>&5
+configure:3025: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 configure:3046: checking whether struct tm is in sys/time.h or time.h
-configure:3059: gcc -c -g -O2  conftest.c 1>&5
+configure:3059: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 configure:3080: checking for tm_zone in struct tm
-configure:3093: gcc -c -g -O2  conftest.c 1>&5
+configure:3093: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 configure:3151: checking whether char is unsigned
 configure:3214: checking for working const
-configure:3268: gcc -c -g -O2  conftest.c 1>&5
+configure:3268: gcc -c -O3 -arch m68k -arch i386 -arch hppa -arch sparc   conftest.c 1>&5
 configure:3291: checking for ANSI stringizing capability

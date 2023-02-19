@@ -33,7 +33,7 @@ INSTALL = ./install-sh -c
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_DATA = ${INSTALL} -m 644
 
-LDFLAGS = -arch i386 -arch m68k -arch hppa -arch sparc
+LDFLAGS = -arch m68k -arch i386 -arch hppa -arch sparc 
 LIBS = -lm 
 
 ALLOCA = 
@@ -42,7 +42,7 @@ LN = ln
 LN_S = ln -s
 
 exec_prefix = ${prefix}
-prefix = /tmp/gawk_build
+prefix = /usr/local
 binprefix =
 manprefix =
 
@@ -59,7 +59,7 @@ DEFPATH = ".:$(datadir)"
 
 SHELL = /bin/sh
 CPPFLAGS = 
-CFLAGS = -g -O2 -arch i386 -arch m68k -arch hppa -arch sparc
+CFLAGS = -O3 -arch m68k -arch i386 -arch hppa -arch sparc 
 COMPFLAGS = -DGAWK -I. -I$(srcdir) $(CPPFLAGS) -DHAVE_CONFIG_H $(CFLAGS)
 
 # object files

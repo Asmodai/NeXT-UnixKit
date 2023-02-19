@@ -28,7 +28,7 @@ INSTALL = .././install-sh -c
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_DATA = ${INSTALL} -m 644
 
-prefix = /tmp/gawk_build
+prefix = /usr/local
 exec_prefix = ${prefix}
 binprefix =
 manprefix =

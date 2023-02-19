@@ -1,0 +1,35 @@
+icon	../../icons/gnu.tiff
+title	GNU grep
+version	2.4.2
+diskname	grep-2.4.2.NIHS
+location	/tmp/grep_build
+suggest	/usr/local
+description	This is `GNU grep', built for NEXTSTEP 3.3 or newer.
+post_install	#!/bin/sh
+post_install	#
+post_install	# Post-installation file.
+post_install	# Binary is installed here.
+post_install	INSTPATH="$2"
+post_install	# Be explicit about the path.
+post_install	PATH=/bin:/usr/bin ; export PATH
+post_install	# Buffer.
+post_install	echo ; echo
+post_install	# Change the file permissions
+post_install	if [ -f "$INSTPATH/bin/grep" ]
+post_install	then
+post_install	    echo "Marking awk binaries as executable."
+post_install	    chmod 755 $INSTPATH/bin/grep
+post_install	    chmod 755 $INSTPATH/bin/fgrep
+post_install	    chmod 755 $INSTPATH/bin/egrep
+post_install	else
+post_install	    echo "The grep binaries are not installed."
+post_install	    echo "Did the install succeed?"
+post_install	    echo "Bailing out."
+post_install	    exit 1
+post_install	fi
+post_install	echo "Post-installation done."
+post_install	echo
+path	bin
+path	info
+path	man
+path	share
